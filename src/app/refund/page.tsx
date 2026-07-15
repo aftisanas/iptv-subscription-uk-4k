@@ -1,10 +1,34 @@
 import type { Metadata } from "next";
-import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import {
+  SITE_NAME,
+  CONTACT_EMAIL,
+  SITE_LOGO_URL,
+  SITE_URL,
+} from "@/lib/constants";
+
+const title = "Refund Policy";
+const description = `${SITE_NAME} refund policy. 30-day money-back guarantee on all plans.`;
+const url = `${SITE_URL}/refund`;
 
 export const metadata: Metadata = {
-  title: "Refund Policy",
-  description: `${SITE_NAME} refund policy. 30-day money-back guarantee on all plans.`,
-  alternates: { canonical: "/refund" },
+  title,
+  description,
+  alternates: { canonical: url },
+  openGraph: {
+    title,
+    description,
+    url,
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_GB",
+    images: [{ url: SITE_LOGO_URL, alt: `${SITE_NAME} logo` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [SITE_LOGO_URL],
+  },
 };
 
 export default function RefundPage() {

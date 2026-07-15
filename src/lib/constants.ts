@@ -1,5 +1,7 @@
 export const SITE_NAME = "IPTV Subscription UK 4K";
 export const SITE_URL = "https://iptv-subscription-uk-4k.com";
+export const SITE_LOGO_PATH = "/iptv-subscription.webp";
+export const SITE_LOGO_URL = `${SITE_URL}${SITE_LOGO_PATH}`;
 export const CONTACT_EMAIL = "support@iptv-subscription-uk-4k.com";
 
 export const NAV_LINKS = [

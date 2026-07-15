@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -12,10 +13,50 @@ import {
   CONTACT_EMAIL,
   FAQ_ITEMS,
   PRICING_PLANS,
+  SITE_LOGO_URL,
   SITE_NAME,
   SITE_URL,
   TESTIMONIALS,
 } from "@/lib/constants";
+
+const title = "IPTV Subscription UK | 37,000 Channels in 4K UHD";
+const description =
+  "Get the best IPTV subscription in the UK. 37,000 channels, 198,000 films in 4K, built-in VPN, 99.9% uptime. 30-day money-back.";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: title,
+  },
+  description,
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "en-GB": SITE_URL,
+    },
+  },
+  openGraph: {
+    title: "IPTV Subscription UK - 4K British IPTV from 12.99",
+    description:
+      "Premium IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD, 4K UHD, instant activation and 24/7 UK support.",
+    url: SITE_URL,
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_GB",
+    images: [
+      {
+        url: SITE_LOGO_URL,
+        alt: `${SITE_NAME} logo`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IPTV Subscription UK - 4K British IPTV from 12.99",
+    description:
+      "Premium IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD, 4K UHD, instant activation and 24/7 UK support.",
+    images: [SITE_LOGO_URL],
+  },
+};
 
 export default function HomePage() {
   const organizationId = `${SITE_URL}/#organization`;
@@ -23,7 +64,7 @@ export default function HomePage() {
   const webpageId = `${SITE_URL}/#webpage`;
   const productId = `${SITE_URL}/#product`;
   const breadcrumbId = `${SITE_URL}/#breadcrumb`;
-  const logoUrl = `${SITE_URL}/cheap-iptv.webp`;
+  const logoUrl = SITE_LOGO_URL;
 
   return (
     <>

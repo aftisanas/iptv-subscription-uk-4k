@@ -3,7 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -48,12 +48,6 @@ export const metadata: Metadata = {
   authors: [{ name: "IPTV Subscription UK 4K" }],
   creator: "IPTV Subscription UK 4K",
   applicationName: "IPTV Subscription UK 4K",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-GB": "/",
-    },
-  },
   manifest: "/favicon_io/site.webmanifest",
   icons: {
     icon: [
@@ -71,17 +65,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    siteName: "IPTV Subscription UK 4K",
-    url: SITE_URL,
-    title: "IPTV Subscription UK — 4K British IPTV from 12.99",
-    description:
-      "Premium IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD, 4K UHD, instant activation and 24/7 UK support.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "IPTV Subscription UK — 4K British IPTV from 12.99",
-    description:
-      "Premium IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD, 4K UHD, instant activation and 24/7 UK support.",
+    siteName: SITE_NAME,
   },
   robots: {
     index: true,

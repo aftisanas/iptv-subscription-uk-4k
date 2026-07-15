@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS, SITE_URL, SITE_NAME } from "@/lib/constants";
+import {
+  BLOG_POSTS,
+  SITE_LOGO_URL,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/constants";
 import BlogPostContent from "./BlogPostContent";
 
 const blogContent: Record<string, { content: string[] }> = {
@@ -58,16 +63,27 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
 
+  const url = `${SITE_URL}/blog/${post.slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: url },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      url: `${SITE_URL}/blog/${post.slug}`,
+      url,
+      siteName: SITE_NAME,
+      locale: "en_GB",
+      images: [{ url: SITE_LOGO_URL, alt: `${SITE_NAME} logo` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [SITE_LOGO_URL],
     },
   };
 }
@@ -94,7 +110,7 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
       name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/cheap-iptv.webp`,
+        url: SITE_LOGO_URL,
       },
     },
     mainEntityOfPage: {

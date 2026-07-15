@@ -3,7 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
-import { NAV_LINKS, LEGAL_LINKS, SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import {
+  NAV_LINKS,
+  LEGAL_LINKS,
+  SITE_NAME,
+  CONTACT_EMAIL,
+  SITE_LOGO_PATH,
+} from "@/lib/constants";
 import SectionLink from "@/components/SectionLink";
 
 export default function Footer() {
@@ -17,7 +23,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <div className="relative h-12 w-12 shrink-0">
                 <Image
-                  src="/cheap-iptv.webp"
+                  src={SITE_LOGO_PATH}
                   alt="IPTV Subscription UK 4K logo"
                   fill
                   sizes="48px"

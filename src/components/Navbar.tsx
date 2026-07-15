@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, SITE_LOGO_PATH } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import SectionLink from "@/components/SectionLink";
 
@@ -47,7 +47,7 @@ export default function Navbar() {
             <Link href="/" className="group flex items-center gap-2.5">
               <div className="relative h-12 w-12 lg:h-14 lg:w-14 shrink-0">
                 <Image
-                  src="/cheap-iptv.webp"
+                  src={SITE_LOGO_PATH}
                   alt="IPTV Subscription UK 4K logo"
                   fill
                   sizes="(min-width: 1024px) 56px, 48px"

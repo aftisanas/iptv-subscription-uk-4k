@@ -1,10 +1,34 @@
 import type { Metadata } from "next";
-import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import {
+  SITE_NAME,
+  CONTACT_EMAIL,
+  SITE_LOGO_URL,
+  SITE_URL,
+} from "@/lib/constants";
+
+const title = "DMCA Policy";
+const description = `DMCA and copyright policy for ${SITE_NAME}.`;
+const url = `${SITE_URL}/dmca`;
 
 export const metadata: Metadata = {
-  title: "DMCA Policy",
-  description: `DMCA and copyright policy for ${SITE_NAME}.`,
-  alternates: { canonical: "/dmca" },
+  title,
+  description,
+  alternates: { canonical: url },
+  openGraph: {
+    title,
+    description,
+    url,
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_GB",
+    images: [{ url: SITE_LOGO_URL, alt: `${SITE_NAME} logo` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [SITE_LOGO_URL],
+  },
 };
 
 export default function DMCAPage() {
