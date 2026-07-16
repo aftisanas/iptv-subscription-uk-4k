@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | IPTV Subscription UK 4K",
   },
   description:
-    "Get the best IPTV subscription in the UK. 37,000 channels, 198,000 films in 4K, built-in VPN, 99.9% uptime. 30-day money-back.",
+    "Buy an IPTV subscription for your UK home. 37,000 live channels, 198,000 films in 4K UHD, five simultaneous screens and a 30-day money-back guarantee.",
   keywords: [
     "iptv subscription",
     "iptv uk",

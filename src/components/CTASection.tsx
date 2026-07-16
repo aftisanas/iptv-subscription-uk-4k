@@ -1,9 +1,12 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Play, MessageCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
 import SectionLink from "./SectionLink";
+import MotionReveal from "./MotionReveal";
+import {
+  CONTACT_EMAIL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_URL,
+} from "@/lib/constants";
 
 export default function CTASection() {
   return (
@@ -39,28 +42,19 @@ export default function CTASection() {
       />
 
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }}
-        >
+        <MotionReveal y={30}>
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }}
-            className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-white/[0.07] backdrop-blur-md px-5 py-2 text-sm text-purple-300 mb-8"
-          >
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-white/[0.07] backdrop-blur-md px-5 py-2 text-sm text-purple-300 mb-8">
             <Sparkles className="h-4 w-4 text-cyan-400" />
-            <span className="font-medium">Join 50,000+ UK Households</span>
-          </motion.div>
+            <span className="font-medium">UK-Based Support · 30-Day Guarantee</span>
+          </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Buy IPTV Today &mdash; Start Your IPTV Subscription{" "}
             <span className="gradient-text-hero">In 60 Seconds</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-300/90 mb-10 leading-relaxed">
-            Over 50,000 UK viewers already switched. Lock in a 4K{" "}
+            Lock in a 4K{" "}
             <SectionLink href="/#pricing" className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline">
               IPTV subscription
             </SectionLink>{" "}
@@ -80,22 +74,40 @@ export default function CTASection() {
               className="group relative flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500 px-8 py-4 text-base font-semibold text-white transition-all hover:shadow-2xl hover:shadow-purple-500/30 active:scale-[0.98] w-full sm:w-auto justify-center"
             >
               <Play className="h-5 w-5 fill-current" />
-              Buy IPTV Now — From 12.99
+              Buy IPTV Now — From £5.85/month
               <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 transition-opacity group-hover:opacity-100" />
             </SectionLink>
-            <SectionLink
-              href="/#pricing"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm px-8 py-4 text-base font-semibold text-white transition-all hover:border-purple-400/30 hover:bg-white/10 w-full sm:w-auto justify-center"
             >
               <MessageCircle className="h-5 w-5 text-cyan-400" />
               Chat With UK Support
-            </SectionLink>
+            </a>
           </div>
 
           <p className="mt-8 text-sm text-gray-400">
-            Need help? WhatsApp +44 20 0000 0000 or email support@iptv-subscription-uk-4k.com — we reply in minutes.
+            Need help?{" "}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline"
+            >
+              WhatsApp {WHATSAPP_DISPLAY}
+            </a>{" "}
+            or email{" "}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>{" "}
+            — we reply in minutes.
           </p>
-        </motion.div>
+        </MotionReveal>
       </div>
     </section>
   );

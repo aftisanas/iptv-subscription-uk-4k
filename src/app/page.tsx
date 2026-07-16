@@ -5,7 +5,6 @@ import FeaturesSection from "@/components/FeaturesSection";
 import PricingSection from "@/components/PricingSection";
 import DevicesSection from "@/components/DevicesSection";
 import ChannelsSection from "@/components/ChannelsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import TrustSection from "@/components/TrustSection";
 import CTASection from "@/components/CTASection";
@@ -16,12 +15,11 @@ import {
   SITE_LOGO_URL,
   SITE_NAME,
   SITE_URL,
-  TESTIMONIALS,
 } from "@/lib/constants";
 
 const title = "IPTV Subscription UK | 37,000 Channels in 4K UHD";
 const description =
-  "Get the best IPTV subscription in the UK. 37,000 channels, 198,000 films in 4K, built-in VPN, 99.9% uptime. 30-day money-back.";
+  "Buy an IPTV subscription for your UK home. 37,000 live channels, 198,000 films in 4K UHD, five simultaneous screens and a 30-day money-back guarantee.";
 
 export const metadata: Metadata = {
   title: {
@@ -35,9 +33,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "IPTV Subscription UK - 4K British IPTV from 12.99",
+    title: "IPTV Subscription UK — 4K UHD From £5.85/month",
     description:
-      "Premium IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD, 4K UHD, instant activation and 24/7 UK support.",
+      "IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD in 4K UHD, five screens and instant email activation.",
     url: SITE_URL,
     type: "website",
     siteName: SITE_NAME,
@@ -51,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "IPTV Subscription UK - 4K British IPTV from 12.99",
+    title: "IPTV Subscription UK — 4K UHD From £5.85/month",
     description:
-      "Premium IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD, 4K UHD, instant activation and 24/7 UK support.",
+      "IPTV subscription for UK homes. 37,000 live channels, 198,000 VOD in 4K UHD, five screens and instant email activation.",
     images: [SITE_LOGO_URL],
   },
 };
@@ -74,7 +72,6 @@ export default function HomePage() {
       <PricingSection />
       <DevicesSection />
       <ChannelsSection />
-      <TestimonialsSection />
       <FAQSection />
       <TrustSection />
       <CTASection />
@@ -97,7 +94,7 @@ export default function HomePage() {
                   url: logoUrl,
                 },
                 description:
-                  "Premium IPTV subscription for UK homes — 37,000 live channels, 198,000 films in 4K UHD, built-in VPN, 99.9% uptime and instant activation. From £25.99.",
+                  "IPTV subscription for UK homes — 37,000 live channels, 198,000 films and series in 4K UHD, five simultaneous screens and instant email activation. From £5.85/month on the 24-month plan.",
                 areaServed: { "@type": "Country", name: "United Kingdom" },
                 contactPoint: {
                   "@type": "ContactPoint",
@@ -133,7 +130,7 @@ export default function HomePage() {
                   "@id": breadcrumbId,
                 },
                 description:
-                  "Get the best IPTV subscription in the UK. 37,000 channels, 198,000 films in 4K, built-in VPN, 99.9% uptime and a 30-day money-back guarantee.",
+                  "Buy an IPTV subscription for your UK home. 37,000 live channels, 198,000 films in 4K UHD, five simultaneous screens and a 30-day money-back guarantee.",
               },
               {
                 "@type": "BreadcrumbList",
@@ -168,7 +165,7 @@ export default function HomePage() {
             url: SITE_URL,
             image: [logoUrl],
             description:
-              "Premium IPTV subscription with 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens, built-in VPN and 99.9% uptime — from £25.99.",
+              "IPTV subscription with 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and a 30-day money-back guarantee — from £5.85/month on the 24-month plan.",
             brand: { "@type": "Brand", name: SITE_NAME },
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",
@@ -179,12 +176,6 @@ export default function HomePage() {
               itemCondition: "https://schema.org/NewCondition",
               url: `${SITE_URL}/#pricing`,
             })),
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.9",
-              reviewCount: "50000",
-              bestRating: "5",
-            },
           }),
         }}
       />
@@ -201,26 +192,6 @@ export default function HomePage() {
                 "@type": "Answer",
                 text: item.answer,
               },
-            })),
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": TESTIMONIALS.map((t, i) => ({
-              "@type": "Review",
-              "@id": `${SITE_URL}/#review-${i + 1}`,
-              itemReviewed: { "@id": productId },
-              author: { "@type": "Person", name: `${t.name} — ${t.location}` },
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: t.rating.toString(),
-                bestRating: "5",
-              },
-              reviewBody: t.text,
             })),
           }),
         }}

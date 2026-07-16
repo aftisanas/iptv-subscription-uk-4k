@@ -66,7 +66,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">6. Service Availability</h2>
-            <p>While we aim for 99.9% uptime, we do not guarantee uninterrupted access to the Service. Scheduled maintenance, technical issues, or circumstances beyond our control may occasionally affect availability. We will endeavour to notify users of planned maintenance in advance.</p>
+            <p>We aim to provide reliable, uninterrupted access to the Service but do not guarantee it. Scheduled maintenance, technical issues, or circumstances beyond our control may occasionally affect availability. We will endeavour to notify users of planned maintenance in advance.</p>
           </section>
 
           <section>

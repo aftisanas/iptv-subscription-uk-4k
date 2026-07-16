@@ -10,7 +10,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative h-[104vh] min-h-[640px] flex flex-col overflow-hidden"
+      className="relative min-h-[105vh] md:h-[104vh] md:min-h-[810px] flex flex-col overflow-hidden"
     >
       {/* ── Deep premium gradient background ── */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0a3e] to-[#0c1445]" />
@@ -83,7 +83,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.18 }}
           className="text-base sm:text-lg text-gray-300/90 max-w-3xl mb-3 px-2 sm:px-0"
         >
-          Stream the best IPTV UK service from £12.99/month. Get 37,000 live channels, 198,000 films and instant setup on any device. Premium IPTV in 4K UHD with a built-in VPN and 99.9% uptime — joined by 50,000 UK viewers.
+          Buy an IPTV subscription for your UK home. 37,000 live channels, 198,000 films and series in 4K UHD, five simultaneous screens and a 30-day money-back guarantee. Instant email activation from £5.85/month on the 24-month plan.
         </motion.p>
 
         {/* Promo banner — replaces hero device image */}
