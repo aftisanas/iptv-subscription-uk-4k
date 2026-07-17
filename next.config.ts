@@ -40,6 +40,25 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog/iptv-vs-sky-comparison",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/premier-league-streaming-guide",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/iptv-free-trial",
+        destination: "/#pricing",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
