@@ -318,6 +318,33 @@ export const CHANNEL_CATEGORIES = [
 
 export const BLOG_POSTS = [
   {
+    slug: "how-to-buy-iptv-subscription-uk",
+    title: "How To Buy An IPTV Subscription In The UK — A Step-By-Step Guide",
+    excerpt:
+      "Buying an IPTV subscription in the UK — the practical steps from decision to first stream. Payment verification, activation, and how to use your refund window properly.",
+    date: "2026-07-17",
+    readTime: "14 min read",
+    category: "Guide",
+  },
+  {
+    slug: "whats-included-in-iptv-subscription-uk",
+    title: "What's Included In A UK IPTV Subscription? The Complete Anatomy",
+    excerpt:
+      "What UK IPTV subscriptions actually include — channels, VOD, catch-up, EPG, connections and add-ons. What's genuinely bundled versus what's merely marketed as bundled.",
+    date: "2026-07-17",
+    readTime: "14 min read",
+    category: "Guide",
+  },
+  {
+    slug: "iptv-subscription-renewal-cancellation-refund-uk",
+    title: "IPTV Subscription Renewal, Cancellation And Refund Rights In The UK",
+    excerpt:
+      "UK consumer-rights guide for IPTV subscribers — the cooling-off period, cancellation, refund routes, chargeback, and what to do when a service doesn't deliver.",
+    date: "2026-07-17",
+    readTime: "13 min read",
+    category: "Legal",
+  },
+  {
     slug: "best-iptv-uk-guide-2026",
     title: "Best IPTV UK 2026 — How To Choose A Trusted IPTV Provider",
     excerpt:

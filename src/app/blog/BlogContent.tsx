@@ -10,6 +10,7 @@ const categoryColors: Record<string, string> = {
   Tutorial: "bg-accent/10 text-accent border border-accent/10",
   Comparison: "bg-amber-50 text-amber-700 border border-amber-200",
   Sports: "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  Legal: "bg-slate-100 text-slate-700 border border-slate-200",
 };
 
 export default function BlogContent() {

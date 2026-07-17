@@ -17,6 +17,65 @@ interface BlogPostContentProps {
   content: string[];
 }
 
+function renderInline(text: string): React.ReactNode[] {
+  const tokens: React.ReactNode[] = [];
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
+  let cursor = 0;
+  let key = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > cursor) {
+      tokens.push(text.slice(cursor, match.index));
+    }
+    if (match[1] !== undefined && match[2] !== undefined) {
+      const label = match[1];
+      const url = match[2];
+      const linkClass =
+        "text-primary underline-offset-2 hover:underline";
+      if (url.startsWith("/")) {
+        if (url.includes("#")) {
+          tokens.push(
+            <SectionLink key={`l-${key}`} href={url} className={linkClass}>
+              {label}
+            </SectionLink>
+          );
+        } else {
+          tokens.push(
+            <Link key={`l-${key}`} href={url} className={linkClass}>
+              {label}
+            </Link>
+          );
+        }
+      } else {
+        tokens.push(
+          <a
+            key={`l-${key}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            {label}
+          </a>
+        );
+      }
+    } else if (match[3] !== undefined) {
+      tokens.push(
+        <strong key={`b-${key}`} className="text-foreground">
+          {match[3]}
+        </strong>
+      );
+    }
+    cursor = match.index + match[0].length;
+    key++;
+  }
+  if (cursor < text.length) {
+    tokens.push(text.slice(cursor));
+  }
+  return tokens;
+}
+
 export default function BlogPostContent({ post, content }: BlogPostContentProps) {
   return (
     <div className="pt-20">
@@ -97,10 +156,10 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                         return (
                           <li
                             key={j}
-                            className="text-sm text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
+                            className="text-base text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
                           >
                             <strong className="text-foreground">{match[1]}</strong>
-                            {match[2]}
+                            {renderInline(match[2])}
                           </li>
                         );
                       }
@@ -109,9 +168,9 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                       return (
                         <li
                           key={j}
-                          className="text-sm text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
+                          className="text-base text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
                         >
-                          {line.replace("- ", "")}
+                          {renderInline(line.replace("- ", ""))}
                         </li>
                       );
                     }
@@ -121,7 +180,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                         key={j}
                         className="text-base text-gray-600 leading-relaxed mb-4"
                       >
-                        {line}
+                        {renderInline(line)}
                       </p>
                     );
                   })}

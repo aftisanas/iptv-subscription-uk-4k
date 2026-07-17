@@ -1,28 +1,27 @@
-# British IPTV 4K
+# IPTV Subscription UK 4K
 
-> British IPTV built for UK homes. 37,000 live channels, 198,000 on-demand films and series, native 4K UHD streaming and five simultaneous screens per account — from £8.66/month with a 30-day money-back guarantee.
+> IPTV subscription for UK homes. 37,000 live channels, 198,000 on-demand films and series, native 4K UHD streaming and five simultaneous screens per account — from £5.85/month on the 24-month plan with a 30-day money-back guarantee.
 
-British IPTV 4K is a UK-focused IPTV subscription service. Every plan includes the full channel library, native 4K where broadcast, five simultaneous screens and a 30-day money-back guarantee. An optional Secure Proxy add-on is available from £4.75 per term.
+IPTV Subscription UK 4K is a UK-focused IPTV subscription service. Every plan includes the full channel library, native 4K where broadcast, five simultaneous screens and a 30-day money-back guarantee. An optional Secure Proxy add-on and extra simultaneous connections are available at checkout as paid add-ons rather than bundled into the headline price.
 
 ## Core pages
 
-- [Home](https://british-iptv-4k.com/): Overview, pricing plans and features
-- [IPTV Subscription UK](https://british-iptv-4k.com/iptv-subscription-uk): All plan options with per-month pricing and inclusions
-- [Blog](https://british-iptv-4k.com/blog): Guides and comparisons
-- [Contact](https://british-iptv-4k.com/contact): Support channels and shared UK mailbox
-- [Pricing](https://british-iptv-4k.com/#pricing): Current plan prices and included features
+- [Home](https://iptv-subscription-uk-4k.com/): Overview, pricing plans and features
+- [Blog](https://iptv-subscription-uk-4k.com/blog): Guides on buying, using, renewing and cancelling an IPTV subscription
+- [Contact](https://iptv-subscription-uk-4k.com/contact): Support channels and shared UK mailbox
+- [Pricing](https://iptv-subscription-uk-4k.com/#pricing): Current plan prices and included features
 
 ## Guides
 
-- [Best IPTV UK Guide](https://british-iptv-4k.com/blog/best-iptv-uk-guide-2026): Five popular ways UK households stream TV compared
-- [Fire Stick Setup Guide](https://british-iptv-4k.com/blog/how-to-setup-iptv-firestick): Step-by-step installation
-- [Is IPTV Legal In The UK?](https://british-iptv-4k.com/blog/is-iptv-legal-uk): The UK legal framework for IPTV, backed by primary sources
-- [How To Choose The Best IPTV Provider In The UK](https://british-iptv-4k.com/blog/how-to-choose-best-iptv-provider-uk): Seven-criteria buyer's framework
-- [How IPTV Works](https://british-iptv-4k.com/blog/how-iptv-works-uk): Plain-English guide for UK viewers
+- [How To Buy An IPTV Subscription In The UK](https://iptv-subscription-uk-4k.com/blog/how-to-buy-iptv-subscription-uk): Step-by-step buying guide — verify the operator, choose a term, pay safely, and test within the refund window
+- [What's Included In A UK IPTV Subscription](https://iptv-subscription-uk-4k.com/blog/whats-included-in-iptv-subscription-uk): Subscription anatomy for UK buyers — channels, VOD, catch-up, EPG, connections, add-ons and what's genuinely bundled versus marketed as bundled
+- [IPTV Subscription Renewal, Cancellation & Refunds UK](https://iptv-subscription-uk-4k.com/blog/iptv-subscription-renewal-cancellation-refund-uk): UK consumer-rights guide — the cooling-off period, cancellation, refund routes, chargeback and external escalation
+- [Best IPTV UK 2026 Guide](https://iptv-subscription-uk-4k.com/blog/best-iptv-uk-guide-2026): Seven-criteria buyer's framework for choosing a trusted UK IPTV provider
+- [How To Set Up IPTV On Fire Stick](https://iptv-subscription-uk-4k.com/blog/how-to-setup-iptv-firestick): Step-by-step Amazon Fire Stick installation guide
 
 ## Legal
 
-- [Terms of Service](https://british-iptv-4k.com/terms)
-- [Privacy Policy](https://british-iptv-4k.com/privacy)
-- [DMCA Policy](https://british-iptv-4k.com/dmca)
-- [Refund Policy](https://british-iptv-4k.com/refund)
+- [Terms of Service](https://iptv-subscription-uk-4k.com/terms)
+- [Privacy Policy](https://iptv-subscription-uk-4k.com/privacy)
+- [DMCA Policy](https://iptv-subscription-uk-4k.com/dmca)
+- [Refund Policy](https://iptv-subscription-uk-4k.com/refund)

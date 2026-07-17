@@ -1,6 +1,13 @@
 import type { MetadataRoute } from "next";
 import { BLOG_POSTS, SITE_URL } from "@/lib/constants";
 
+const SPRINT_N1_DATE = new Date("2026-07-17");
+const SPRINT_N1_SLUGS = new Set<string>([
+  "how-to-buy-iptv-subscription-uk",
+  "whats-included-in-iptv-subscription-uk",
+  "iptv-subscription-renewal-cancellation-refund-uk",
+]);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const parseDateOrNow = (value: string) => {
@@ -22,7 +29,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     Boolean(post.slug)
   ).map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: parseDateOrNow(post.date),
+    lastModified: SPRINT_N1_SLUGS.has(post.slug)
+      ? SPRINT_N1_DATE
+      : parseDateOrNow(post.date),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
