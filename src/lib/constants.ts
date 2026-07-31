@@ -8,6 +8,9 @@ export const WHATSAPP_NUMBER = "447878757831";
 export const WHATSAPP_DISPLAY = "+44 7878 757831";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
+// Fallback only — extra-connection pricing is per plan
+// (`PRICING_PLANS[].extraConnectionPrice`) because the add-on covers the whole
+// term. Used when no plan is in context.
 export const EXTRA_CONNECTION_PRICE = 7.25;
 export const EXTRA_CONNECTIONS_MAX = 5;
 
@@ -15,7 +18,8 @@ export const CHECKOUT_COPY = {
   extraConnectionsLabel: "Additional Connections",
   extraConnectionsHelp:
     "Add extra simultaneous streams for other rooms or family members.",
-  extraConnectionsPriceLabel: `+£${EXTRA_CONNECTION_PRICE.toFixed(2)} per extra connection`,
+  extraConnectionsPriceLabel: (price: number) =>
+    `+£${price.toFixed(2)} per extra connection, for the full term`,
   buttonLabelPrefix: "Order via WhatsApp",
   buttonSubtitle:
     "You'll be redirected to WhatsApp to confirm the order and receive payment details.",
@@ -24,9 +28,10 @@ export const CHECKOUT_COPY = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Why Us", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const LEGAL_LINKS = [
@@ -34,6 +39,7 @@ export const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "DMCA Policy", href: "/dmca" },
   { label: "Refund Policy", href: "/refund" },
+  { label: "Editorial Policy", href: "/editorial-policy" },
 ] as const;
 
 export const STATS = [
@@ -106,6 +112,7 @@ export const PRICING_PLANS = [
     period: "3 months",
     devices: 5,
     proxyPrice: 4.75,
+    extraConnectionPrice: 7.25,
     badge: "Starter Pack",
     discount: "-35%",
     accentColor: "violet",
@@ -134,6 +141,7 @@ export const PRICING_PLANS = [
     period: "6 months",
     devices: 5,
     proxyPrice: 9.5,
+    extraConnectionPrice: 14.5,
     badge: "Fan Favourite",
     discount: "-45%",
     accentColor: "violet",
@@ -162,6 +170,7 @@ export const PRICING_PLANS = [
     period: "year",
     devices: 5,
     proxyPrice: 19.0,
+    extraConnectionPrice: 29.0,
     badge: "Most Popular — Save 40%",
     discount: "-40%",
     accentColor: "blue",
@@ -190,6 +199,7 @@ export const PRICING_PLANS = [
     period: "2 years",
     devices: 5,
     proxyPrice: 38.0,
+    extraConnectionPrice: 58.0,
     badge: "Best Value — Save 55%",
     discount: "-55%",
     accentColor: "violet",
@@ -316,6 +326,8 @@ export const CHANNEL_CATEGORIES = [
   },
 ] as const;
 
+// `date` is datePublished; `updated` is dateModified and drives sitemap lastmod.
+// Bump `updated` only when the post's body actually changes.
 export const BLOG_POSTS = [
   {
     slug: "how-to-buy-iptv-subscription-uk",
@@ -323,8 +335,15 @@ export const BLOG_POSTS = [
     excerpt:
       "Buying an IPTV subscription in the UK — the practical steps from decision to first stream. Payment verification, activation, and how to use your refund window properly.",
     date: "2026-07-17",
+    updated: "2026-07-17",
     readTime: "14 min read",
     category: "Guide",
+    keywords: [
+      "how to buy iptv subscription uk",
+      "buy iptv uk",
+      "iptv subscription uk",
+      "where to buy iptv safely",
+    ],
   },
   {
     slug: "whats-included-in-iptv-subscription-uk",
@@ -332,8 +351,15 @@ export const BLOG_POSTS = [
     excerpt:
       "What UK IPTV subscriptions actually include — channels, VOD, catch-up, EPG, connections and add-ons. What's genuinely bundled versus what's merely marketed as bundled.",
     date: "2026-07-17",
+    updated: "2026-07-17",
     readTime: "14 min read",
     category: "Guide",
+    keywords: [
+      "what's included in an iptv subscription",
+      "iptv subscription features uk",
+      "iptv catch up epg",
+      "iptv simultaneous connections",
+    ],
   },
   {
     slug: "iptv-subscription-renewal-cancellation-refund-uk",
@@ -341,25 +367,46 @@ export const BLOG_POSTS = [
     excerpt:
       "UK consumer-rights guide for IPTV subscribers — the cooling-off period, cancellation, refund routes, chargeback, and what to do when a service doesn't deliver.",
     date: "2026-07-17",
+    updated: "2026-07-17",
     readTime: "13 min read",
     category: "Legal",
+    keywords: [
+      "iptv refund uk",
+      "cancel iptv subscription",
+      "iptv cooling off period",
+      "iptv chargeback",
+    ],
   },
   {
     slug: "best-iptv-uk-guide-2026",
-    title: "Best IPTV UK 2026 — How To Choose A Trusted IPTV Provider",
+    title: "Best IPTV UK — How To Choose A Trusted IPTV Provider",
     excerpt:
-      "Finding the best IPTV service in the UK means looking beyond flashy promises. This guide breaks down the 7 criteria that matter most for British viewers — from channel quality and reliability to support and genuine value.",
+      "A seven-criteria framework for judging a UK IPTV provider — channel depth, peak-hour stability, real streaming quality, EPG and catch-up, device support, support responsiveness and honest pricing. Includes the red flags worth walking away from.",
     date: "2026-04-01",
-    readTime: "12 min read",
+    updated: "2026-07-31",
+    readTime: "13 min read",
     category: "Guide",
+    keywords: [
+      "best iptv uk",
+      "trusted iptv provider uk",
+      "how to choose an iptv service",
+      "iptv provider red flags",
+    ],
   },
   {
     slug: "how-to-setup-iptv-firestick",
     title: "How To Set Up An IPTV Subscription On Amazon Fire Stick",
     excerpt:
-      "A complete, beginner-friendly guide to installing and configuring an IPTV subscription on an Amazon Fire Stick. Stream 37,000 UK channels in 4K in under 10 minutes using the step-by-step instructions below.",
+      "Install and configure IPTV on an Amazon Fire Stick, step by step — sideloading via Downloader, choosing between IPTV Smarters Pro and TiviMate, entering Xtream Codes or M3U details, and fixing the buffering, EPG and playback problems that come up most often.",
     date: "2026-03-20",
-    readTime: "6 min read",
+    updated: "2026-07-31",
+    readTime: "13 min read",
     category: "Tutorial",
+    keywords: [
+      "iptv firestick setup",
+      "how to install iptv on firestick",
+      "iptv smarters pro firestick",
+      "firestick iptv buffering fix",
+    ],
   },
 ] as const;

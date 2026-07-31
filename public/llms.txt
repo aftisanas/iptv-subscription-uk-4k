@@ -10,18 +10,24 @@ IPTV Subscription UK 4K is a UK-focused IPTV subscription service. Every plan in
 - [Blog](https://iptv-subscription-uk-4k.com/blog): Guides on buying, using, renewing and cancelling an IPTV subscription
 - [Contact](https://iptv-subscription-uk-4k.com/contact): Support channels and shared UK mailbox
 - [Pricing](https://iptv-subscription-uk-4k.com/#pricing): Current plan prices and included features
+- [Editorial Policy](https://iptv-subscription-uk-4k.com/editorial-policy): Sourcing standards, conflict-of-interest disclosure and correction process
 
 ## Guides
 
 - [How To Buy An IPTV Subscription In The UK](https://iptv-subscription-uk-4k.com/blog/how-to-buy-iptv-subscription-uk): Step-by-step buying guide — verify the operator, choose a term, pay safely, and test within the refund window
 - [What's Included In A UK IPTV Subscription](https://iptv-subscription-uk-4k.com/blog/whats-included-in-iptv-subscription-uk): Subscription anatomy for UK buyers — channels, VOD, catch-up, EPG, connections, add-ons and what's genuinely bundled versus marketed as bundled
 - [IPTV Subscription Renewal, Cancellation & Refunds UK](https://iptv-subscription-uk-4k.com/blog/iptv-subscription-renewal-cancellation-refund-uk): UK consumer-rights guide — the cooling-off period, cancellation, refund routes, chargeback and external escalation
-- [Best IPTV UK 2026 Guide](https://iptv-subscription-uk-4k.com/blog/best-iptv-uk-guide-2026): Seven-criteria buyer's framework for choosing a trusted UK IPTV provider
-- [How To Set Up IPTV On Fire Stick](https://iptv-subscription-uk-4k.com/blog/how-to-setup-iptv-firestick): Step-by-step Amazon Fire Stick installation guide
+- [Best IPTV UK Guide](https://iptv-subscription-uk-4k.com/blog/best-iptv-uk-guide-2026): Seven-criteria framework for judging a UK IPTV provider, plus the red flags worth walking away from
+- [How To Set Up IPTV On Fire Stick](https://iptv-subscription-uk-4k.com/blog/how-to-setup-iptv-firestick): Amazon Fire Stick installation walkthrough — sideloading, player choice, credential entry, and troubleshooting buffering, EPG and playback faults
 
-## Legal
+## Key policies
 
-- [Terms of Service](https://iptv-subscription-uk-4k.com/terms)
-- [Privacy Policy](https://iptv-subscription-uk-4k.com/privacy)
-- [DMCA Policy](https://iptv-subscription-uk-4k.com/dmca)
-- [Refund Policy](https://iptv-subscription-uk-4k.com/refund)
+- [Refund Policy](https://iptv-subscription-uk-4k.com/refund): 30-day money-back guarantee on first-time purchases; 7-day window on renewals. Requests via WhatsApp or email.
+- [Terms of Service](https://iptv-subscription-uk-4k.com/terms): Subscription terms, acceptable use, and service conditions.
+- [Privacy Policy](https://iptv-subscription-uk-4k.com/privacy): What data is collected at purchase and how it is handled.
+- [DMCA Policy](https://iptv-subscription-uk-4k.com/dmca): Rights-holder notice and takedown route.
+- [Editorial Policy](https://iptv-subscription-uk-4k.com/editorial-policy): How guides are researched and sourced, what is never published, and a plain statement of the conflict of interest in publishing buying advice as a seller in the same market.
+
+## Consumer-rights context
+
+Guides on this site describe UK consumer protection for distance-sold digital services as general information, not legal advice, and cite primary sources on legislation.gov.uk. The two instruments referenced throughout are the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 — source of the 14-day cooling-off period — and the Consumer Rights Act 2015, which governs whether a digital service is as described, fit for purpose and of satisfactory quality. The 30-day refund window offered here sits on top of that 14-day statutory minimum rather than replacing it.

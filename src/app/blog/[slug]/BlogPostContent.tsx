@@ -76,6 +76,54 @@ function renderInline(text: string): React.ReactNode[] {
   return tokens;
 }
 
+const isTableBlock = (lines: string[]) =>
+  lines.length >= 3 && lines.every((line) => line.trim().startsWith("|"));
+
+const splitRow = (line: string) =>
+  line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+
+/**
+ * Pipe-delimited markdown table. Kept as its own block type because AI
+ * extractors lift tables verbatim, and a comparison table is the cheapest
+ * multi-modal element available to text-heavy content.
+ */
+function MarkdownTable({ lines }: { lines: string[] }) {
+  const [headerLine, , ...bodyLines] = lines;
+  const headers = splitRow(headerLine);
+
+  return (
+    <div className="my-8 overflow-x-auto">
+      <table className="w-full min-w-xl border-collapse text-left text-sm">
+        <thead>
+          <tr className="border-b border-violet-200">
+            {headers.map((cell, i) => (
+              <th key={i} className="px-3 py-2.5 font-semibold text-foreground">
+                {renderInline(cell)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {bodyLines.map((row, i) => (
+            <tr key={i} className="border-b border-violet-100/70 align-top">
+              {splitRow(row).map((cell, j) => (
+                <td key={j} className="px-3 py-2.5 text-gray-600 leading-relaxed">
+                  {renderInline(cell)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function BlogPostContent({ post, content }: BlogPostContentProps) {
   return (
     <div className="pt-20">
@@ -137,9 +185,24 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
           >
             {content.map((block, i) => {
               const lines = block.split("\n");
+
+              if (isTableBlock(lines)) {
+                return <MarkdownTable key={i} lines={lines} />;
+              }
+
               return (
                 <div key={i} className="mb-8">
                   {lines.map((line, j) => {
+                    if (line.startsWith("### ")) {
+                      return (
+                        <h3
+                          key={j}
+                          className="text-xl font-semibold text-foreground mt-8 mb-3"
+                        >
+                          {line.replace("### ", "")}
+                        </h3>
+                      );
+                    }
                     if (line.startsWith("## ")) {
                       return (
                         <h2

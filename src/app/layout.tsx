@@ -28,23 +28,9 @@ export const metadata: Metadata = {
   },
   description:
     "Buy an IPTV subscription for your UK home. 37,000 live channels, 198,000 films in 4K UHD, five simultaneous screens and a 30-day money-back guarantee.",
-  keywords: [
-    "iptv subscription",
-    "iptv uk",
-    "best iptv uk",
-    "iptv providers",
-    "iptv service",
-    "iptv reviews",
-    "buy iptv",
-    "british iptv",
-    "strong iptv",
-    "fast iptv",
-    "premium iptv",
-    "cheap iptv subscription",
-    "iptv subscription uk",
-    "iptv uk 4k",
-    "uk iptv subscription",
-  ],
+  // No `keywords` field: the meta keywords tag has carried no ranking value
+  // since ~2009, and a stuffed list of near-duplicate variants is a mild
+  // low-quality signal to the engines that still parse it.
   authors: [{ name: "IPTV Subscription UK 4K" }],
   creator: "IPTV Subscription UK 4K",
   applicationName: "IPTV Subscription UK 4K",

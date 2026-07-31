@@ -11,19 +11,24 @@ function AnimatedNumber({ value }: { value: string }) {
   const numericStr = numericMatch ? numericMatch[0] : "";
   const prefix = numericStr ? value.slice(0, value.indexOf(numericStr)) : "";
   const suffix = numericStr ? value.slice(value.indexOf(numericStr) + numericStr.length) : "";
-  const [displayed, setDisplayed] = useState(numericStr ? `${prefix}0${suffix}` : value);
+  // Initialise to the final value so the server-rendered HTML carries the real
+  // numbers. Crawlers and LLM extractors read the SSR markup, not the
+  // post-hydration DOM — starting at "0+" hid the headline stats from them.
+  const [displayed, setDisplayed] = useState(value);
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!inView || !numericStr) {
-      if (!numericStr) setDisplayed(value);
-      return;
-    }
+    if (!inView || !numericStr || started.current) return;
+    started.current = true;
 
     const target = parseInt(numericStr.replace(/,/g, ""), 10);
     const duration = 900;
     const steps = 36;
     const stepTime = duration / steps;
     let step = 0;
+
+    // Zero is the first frame of the animation, not the initial state.
+    setDisplayed(`${prefix}0${suffix}`);
 
     const timer = setInterval(() => {
       step++;

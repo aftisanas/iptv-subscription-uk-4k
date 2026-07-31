@@ -135,18 +135,15 @@ export default function HomePage() {
               {
                 "@type": "BreadcrumbList",
                 "@id": breadcrumbId,
+                // Single crumb by design. Position 2 previously pointed at
+                // `/#features` — a fragment, not a page, which Google treats as
+                // noise rather than a second-level crumb.
                 itemListElement: [
                   {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
                     item: SITE_URL,
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: "IPTV Subscription UK",
-                    item: `${SITE_URL}/#features`,
                   },
                 ],
               },
@@ -166,7 +163,8 @@ export default function HomePage() {
             image: [logoUrl],
             description:
               "IPTV subscription with 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and a 30-day money-back guarantee — from £5.85/month on the 24-month plan.",
-            brand: { "@type": "Brand", name: SITE_NAME },
+            brand: { "@type": "Brand", name: SITE_NAME, "@id": organizationId },
+            category: "IPTV subscription",
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",
               name: `${plan.name} IPTV Subscription`,

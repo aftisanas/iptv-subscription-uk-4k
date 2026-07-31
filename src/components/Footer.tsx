@@ -36,7 +36,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-6">
-              IPTV subscription for UK homes. 37,000 live channels, 198,000 films and series in 4K UHD, five simultaneous screens and instant email activation — from £5.85/month on the 24-month plan.
+              IPTV subscription for UK homes. 37,000 live channels, 198,000 films and series in 4K UHD, five simultaneous screens and instant email activation — from £3.33/month on the 24-month plan.
             </p>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted">
