@@ -22,23 +22,23 @@ export default function ContactContent() {
       {/* ── Premium Hero Section ── */}
       <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-24">
         {/* Deep premium gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0a3e] to-[#0c1445]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#050507] via-[#120a10] to-[#0a0a12]" />
 
         {/* Aurora blobs */}
         <div
-          className="aurora-blob w-[600px] h-[600px] bg-purple-600/20 -top-32 -left-32"
+          className="aurora-blob w-[600px] h-[600px] bg-primary/25 -top-32 -left-32"
           style={{ animationDelay: "0s" }}
         />
         <div
-          className="aurora-blob w-[450px] h-[450px] bg-blue-500/15 top-1/4 right-[-8%]"
+          className="aurora-blob w-[450px] h-[450px] bg-accent/20 top-1/4 right-[-8%]"
           style={{ animationDelay: "4s" }}
         />
         <div
-          className="aurora-blob w-[400px] h-[400px] bg-cyan-500/15 bottom-[-15%] left-1/3"
+          className="aurora-blob w-[400px] h-[400px] bg-neon/15 bottom-[-15%] left-1/3"
           style={{ animationDelay: "8s" }}
         />
         <div
-          className="aurora-blob w-[300px] h-[300px] bg-fuchsia-500/12 top-[30%] left-[55%]"
+          className="aurora-blob w-[300px] h-[300px] bg-primary/12 top-[30%] left-[55%]"
           style={{ animationDelay: "6s" }}
         />
 
@@ -57,9 +57,9 @@ export default function ContactContent() {
         />
 
         {/* Floating orbs */}
-        <div className="absolute top-[20%] left-[12%] w-2 h-2 rounded-full bg-purple-400/50 animate-float" />
-        <div className="absolute top-[40%] right-[10%] w-1.5 h-1.5 rounded-full bg-cyan-400/40 animate-float" style={{ animationDelay: "3s" }} />
-        <div className="absolute bottom-[20%] left-[25%] w-1 h-1 rounded-full bg-blue-400/50 animate-float" style={{ animationDelay: "5s" }} />
+        <div className="absolute top-[20%] left-[12%] w-2 h-2 rounded-full bg-primary/50 animate-float" />
+        <div className="absolute top-[40%] right-[10%] w-1.5 h-1.5 rounded-full bg-accent/40 animate-float" style={{ animationDelay: "3s" }} />
+        <div className="absolute bottom-[20%] left-[25%] w-1 h-1 rounded-full bg-neon/50 animate-float" style={{ animationDelay: "5s" }} />
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
@@ -68,11 +68,11 @@ export default function ContactContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-white/[0.07] backdrop-blur-md px-5 py-2.5 text-sm text-purple-200 mb-8"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card backdrop-blur-md px-5 py-2.5 text-sm text-muted mb-8"
           >
-            <HeadphonesIcon className="h-4 w-4 text-cyan-400" />
+            <HeadphonesIcon className="h-4 w-4 text-accent" />
             <span className="font-medium">Dedicated UK Support — 24/7</span>
-            <span className="flex gap-0.5 text-amber-400">
+            <span className="flex gap-0.5 text-accent">
               {[...Array(5)].map((_, i) => <Star key={i} className="h-3 w-3 fill-current" />)}
             </span>
           </motion.div>
@@ -84,7 +84,7 @@ export default function ContactContent() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            <span className="text-white">Contact The IPTV Subscription UK</span>{" "}
+            <span className="text-foreground">Contact The IPTV Subscription UK</span>{" "}
             <span className="gradient-text-hero">Support Team</span>
           </motion.h1>
 
@@ -93,14 +93,14 @@ export default function ContactContent() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-lg text-gray-300/90 leading-relaxed"
+            className="mx-auto max-w-2xl text-lg text-muted leading-relaxed prose-body"
           >
             The UK-based IPTV Subscription UK 4K support team is available 24/7 via live chat, email and WhatsApp — a named British team with deep knowledge of the UK IPTV market. Average first response: under four minutes.
           </motion.p>
         </div>
 
         {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#fafbff] via-[#fafbff]/80 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050507] via-[#050507]/80 to-transparent" />
       </section>
 
       {/* Contact Methods */}
@@ -115,7 +115,7 @@ export default function ContactContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative rounded-2xl border border-gray-100 bg-white p-6 text-center transition-all duration-500 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+                className="group relative rounded-2xl border border-border bg-card p-6 text-center transition-all duration-500 hover:border-border-bright hover:bg-card-hover hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
               >
                 <div className="absolute top-4 right-4">
                   <span className={`inline-block rounded-full px-2.5 py-1 text-[10px] font-medium ${method.badgeColor}`}>
@@ -144,7 +144,7 @@ export default function ContactContent() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm"
+              className="rounded-2xl border border-border bg-card p-8"
             >
               <div className="flex items-center gap-3 mb-6">
                 <Clock className="h-5 w-5 text-primary" />
@@ -157,7 +157,7 @@ export default function ContactContent() {
                   { dept: "Sales Department", hours: "Mon–Fri, 9am–6pm GMT" },
                   { dept: "Billing Enquiries", hours: "Mon–Fri, 9am–6pm GMT" },
                 ].map((item) => (
-                  <div key={item.dept} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
+                  <div key={item.dept} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <span className="text-sm text-muted">{item.dept}</span>
                     <span className="text-sm font-medium text-foreground">{item.hours}</span>
                   </div>
@@ -170,7 +170,7 @@ export default function ContactContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm"
+              className="rounded-2xl border border-border bg-card p-8"
             >
               <div className="flex items-center gap-3 mb-6">
                 <Headphones className="h-5 w-5 text-primary" />

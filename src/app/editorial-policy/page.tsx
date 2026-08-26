@@ -57,7 +57,7 @@ export default function EditorialPolicyPage() {
           publishing buying advice about a market we sell into.
         </p>
 
-        <div className="space-y-8 text-sm text-gray-600 leading-relaxed">
+        <div className="space-y-8 text-sm text-muted leading-relaxed">
           <p className="text-muted">Last updated: 31 July 2026</p>
 
           <section>

@@ -1,3 +1,5 @@
+import { NAV_LINKS } from "@/lib/constants";
+
 /**
  * Every string the hero renders. Re-skinning the section for a different
  * subject should be an edit to this file plus the palette in globals.css —
@@ -12,15 +14,13 @@ export const HERO_CONTENT = {
     href: "/",
   },
   nav: {
-    /** Real in-page targets — every section carries a matching id. */
-    links: [
-      { label: "Home", href: "/" },
-      { label: "Plans", href: "#pricing" },
-      { label: "What's Included", href: "#features" },
-      { label: "Devices", href: "#devices" },
-      { label: "FAQ", href: "#faq" },
-    ],
-    cta: { label: "Get My Subscription", href: "#pricing" },
+    /**
+     * Re-exported from constants.ts rather than declared here. The header now
+     * renders from the root layout on every route, so there cannot be a
+     * homepage nav and a site nav that disagree.
+     */
+    links: NAV_LINKS,
+    cta: { label: "Get My Subscription", href: "/#pricing" },
   },
 
   /** Meta rail: category on the left, the terms of the deal on the right. */

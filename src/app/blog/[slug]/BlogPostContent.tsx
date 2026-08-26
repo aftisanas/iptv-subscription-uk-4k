@@ -100,7 +100,7 @@ function MarkdownTable({ lines }: { lines: string[] }) {
     <div className="my-8 overflow-x-auto">
       <table className="w-full min-w-xl border-collapse text-left text-sm">
         <thead>
-          <tr className="border-b border-violet-200">
+          <tr className="border-b border-border-bright">
             {headers.map((cell, i) => (
               <th key={i} className="px-3 py-2.5 font-semibold text-foreground">
                 {renderInline(cell)}
@@ -110,9 +110,9 @@ function MarkdownTable({ lines }: { lines: string[] }) {
         </thead>
         <tbody>
           {bodyLines.map((row, i) => (
-            <tr key={i} className="border-b border-violet-100/70 align-top">
+            <tr key={i} className="border-b border-border align-top">
               {splitRow(row).map((cell, j) => (
-                <td key={j} className="px-3 py-2.5 text-gray-600 leading-relaxed">
+                <td key={j} className="px-3 py-2.5 text-muted leading-relaxed">
                   {renderInline(cell)}
                 </td>
               ))}
@@ -219,7 +219,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                         return (
                           <li
                             key={j}
-                            className="text-base text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
+                            className="text-base text-muted leading-relaxed ml-4 mb-2 list-disc"
                           >
                             <strong className="text-foreground">{match[1]}</strong>
                             {renderInline(match[2])}
@@ -231,7 +231,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                       return (
                         <li
                           key={j}
-                          className="text-base text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
+                          className="text-base text-muted leading-relaxed ml-4 mb-2 list-disc"
                         >
                           {renderInline(line.replace("- ", ""))}
                         </li>
@@ -241,7 +241,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                     return (
                       <p
                         key={j}
-                        className="text-base text-gray-600 leading-relaxed mb-4"
+                        className="text-base text-muted leading-relaxed mb-4"
                       >
                         {renderInline(line)}
                       </p>
@@ -257,7 +257,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 rounded-2xl border border-primary/15 bg-blue-50 p-8 text-center"
+            className="mt-16 rounded-2xl border border-primary/25 bg-card p-8 text-center"
           >
             <h3 className="text-xl font-bold text-foreground mb-3">
               Ready to Start Streaming?
@@ -267,7 +267,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
             </p>
             <SectionLink
               href="/#pricing"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-primary/20"
+              className="inline-flex items-center gap-2 rounded-xl bg-[image:var(--accent-flare)] px-8 py-3.5 text-sm font-semibold text-[color:var(--cta-ink)] transition-all hover:shadow-lg hover:shadow-primary/25"
             >
               View Subscription Plans
             </SectionLink>

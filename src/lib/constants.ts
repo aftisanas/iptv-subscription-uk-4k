@@ -1,6 +1,6 @@
 export const SITE_NAME = "IPTV Subscription UK 4K";
 export const SITE_URL = "https://iptv-subscription-uk-4k.com";
-export const SITE_LOGO_PATH = "/iptv-subscription.webp";
+export const SITE_LOGO_PATH = "/logo.webp";
 export const SITE_LOGO_URL = `${SITE_URL}${SITE_LOGO_PATH}`;
 export const CONTACT_EMAIL = "contact@buy-iptv-uk.com";
 
@@ -26,11 +26,20 @@ export const CHECKOUT_COPY = {
   footerNote: "Secure ordering via WhatsApp — no card details on this page.",
 } as const;
 
+/**
+ * The single source of truth for the primary nav. The header is rendered from
+ * the root layout on all 16 routes, so every href is root-relative — a bare
+ * "#pricing" would resolve against /blog and go nowhere.
+ *
+ * Blog and Contact are load-bearing: they were added in 41c2061 to give both
+ * URLs a sitewide inbound link, and removing either undoes that.
+ */
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Blog", href: "/blog" },
+  { label: "Plans", href: "/#pricing" },
+  { label: "Devices", href: "/#devices" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ] as const;
 

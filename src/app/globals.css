@@ -18,7 +18,11 @@
   --color-border: rgba(255, 255, 255, 0.09);
   --color-border-bright: rgba(255, 255, 255, 0.18);
   --color-muted: rgba(255, 255, 255, 0.62);
-  --color-muted-foreground: rgba(255, 255, 255, 0.42);
+  /* 0.48, not the design's 0.42 for --ink-faint: at 0.42 this lands on 4.00:1
+     against the stage, under AA for normal text. Nothing uses it yet, so the
+     cheapest time to stop it being a trap is now. The decorative --ink-faint
+     token below keeps 0.42 — it is not used for body text. */
+  --color-muted-foreground: rgba(255, 255, 255, 0.48);
 
   /* Accent — the red→amber flare carries what violet used to */
   --color-primary: #ff2d20;

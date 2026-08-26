@@ -1,3 +1,5 @@
+import { LEGAL_LINKS } from "@/lib/constants";
+
 export type FooterLink = { label: string; href: string };
 export type FooterColumn = { title: string; links: FooterLink[] };
 
@@ -81,13 +83,11 @@ export const FOOTER = {
     /** Rendered verbatim — the component adds nothing to it. */
     copyright: "© 2026 iptv-subscription-uk-4k.com — IPTV subscriptions for UK homes",
     note: "IPTV Subscription UK 4K is not affiliated with, endorsed by or connected to any television network, broadcaster or rights-holder. All trademarks are the property of their respective owners.",
-    /** The five policy links, as one compact row in the lowest tier. */
-    links: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "DMCA Policy", href: "/dmca" },
-      { label: "Refund Policy", href: "/refund" },
-      { label: "Editorial Policy", href: "/editorial-policy" },
-    ] satisfies FooterLink[],
+    /**
+     * The five policy links, as one compact row in the lowest tier.
+     * Sourced from constants.ts so the footer and the rest of the site cannot
+     * disagree about which policy pages exist.
+     */
+    links: LEGAL_LINKS satisfies readonly FooterLink[],
   },
 } as const;

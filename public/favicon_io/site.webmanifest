@@ -1,12 +1,12 @@
 {
   "name": "IPTV Subscription UK 4K",
   "short_name": "IPTV Subscription UK",
-  "description": "Premium IPTV subscription for UK homes — 37,000 channels, 198,000 films in 4K UHD, built-in VPN, instant activation. From 12.99.",
+  "description": "IPTV subscriptions for UK homes — 37,000+ live channels, 198,000+ films and series in 4K UHD, five screens on one login. From £3.33/month on the 24-month term.",
   "scope": "/",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#0a0a0a",
-  "background_color": "#0a0a0a",
+  "theme_color": "#050507",
+  "background_color": "#050507",
   "lang": "en-GB",
   "icons": [
     {

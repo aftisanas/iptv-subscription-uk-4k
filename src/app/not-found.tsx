@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
+    <div className="min-h-[70vh] flex items-center justify-center px-4 pt-32 pb-16">
       <div className="mx-auto max-w-xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-violet-600 mb-4">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
           404
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -23,13 +23,13 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-primary/20"
+            className="inline-flex items-center gap-2 rounded-xl bg-[image:var(--accent-flare)] px-6 py-3 text-sm font-semibold text-[color:var(--cta-ink)] transition-all hover:shadow-lg hover:shadow-primary/25"
           >
             Go Home
           </Link>
           <Link
             href="/#pricing"
-            className="inline-flex items-center gap-2 rounded-xl border border-violet-200 bg-white px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-violet-300 hover:bg-violet-50"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-border-bright hover:bg-card-hover"
           >
             View Pricing
           </Link>

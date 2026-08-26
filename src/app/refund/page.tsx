@@ -36,7 +36,7 @@ export default function RefundPage() {
     <div className="pt-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Refund Policy</h1>
-        <div className="space-y-6 text-sm text-gray-600 leading-relaxed">
+        <div className="space-y-6 text-sm text-muted leading-relaxed">
           <p className="text-muted">Last updated: 1 April 2026</p>
 
           <section>
@@ -56,7 +56,7 @@ export default function RefundPage() {
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">Conditions</h2>
-            <p>The 30-day money-back guarantee applies to first-time purchases only. Renewals and repeat subscriptions are subject to a 7-day refund window. Refunds are processed within 5–7 business days.</p>
+            <p>The 30-day money-back guarantee applies to your first purchase of a subscription term. Nothing on this site auto-renews and no card is stored, so there is no renewal to refund. If you choose to buy a further term later, that purchase carries its own 30-day guarantee running from the day it starts.</p>
           </section>
         </div>
       </div>
