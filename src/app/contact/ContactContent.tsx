@@ -132,7 +132,7 @@ export default function ContactContent() {
                   <method.icon className="h-6 w-6 text-primary" />
                 </div>
 
-                <h3 className="text-lg font-semibold text-foreground mb-2">{method.title}</h3>
+                <h2 className="text-lg font-semibold text-foreground mb-2">{method.title}</h2>
                 <p className="text-sm text-muted mb-3">{method.description}</p>
                 <p className="text-sm font-medium text-primary">{method.detail}</p>
               </motion.a>
@@ -153,7 +153,7 @@ export default function ContactContent() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <Clock className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">Support Hours</h3>
+                <h2 className="text-lg font-semibold text-foreground">Support Hours</h2>
               </div>
               <div className="space-y-4">
                 {[
@@ -179,7 +179,7 @@ export default function ContactContent() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <Headphones className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">What We Can Help With</h3>
+                <h2 className="text-lg font-semibold text-foreground">What We Can Help With</h2>
               </div>
               <div className="space-y-3">
                 {[

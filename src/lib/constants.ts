@@ -11,9 +11,19 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 // Fallback only — extra-connection pricing is per plan
 // (`PRICING_PLANS[].extraConnectionPrice`) because the add-on covers the whole
 // term. Used when no plan is in context.
+/**
+ * SUPERSEDED by the Premium tier notes in src/data/pricing.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/pricing.ts instead, or delete this once you are sure.
+ */
 export const EXTRA_CONNECTION_PRICE = 7.25;
 export const EXTRA_CONNECTIONS_MAX = 5;
 
+/**
+ * SUPERSEDED. Nothing imports this — the checkout copy moved into the
+ * ported components. Editing it changes nothing on the site.
+ */
 export const CHECKOUT_COPY = {
   extraConnectionsLabel: "Additional Connections",
   extraConnectionsHelp:
@@ -51,6 +61,12 @@ export const LEGAL_LINKS = [
   { label: "Editorial Policy", href: "/editorial-policy" },
 ] as const;
 
+/**
+ * SUPERSEDED by METRICS in src/data/metrics.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/metrics.ts instead, or delete this once you are sure.
+ */
 export const STATS = [
   { value: "37,000+", label: "Live Channels" },
   { value: "198,000+", label: "Films & Series" },
@@ -58,6 +74,12 @@ export const STATS = [
   { value: "24/7", label: "UK Support" },
 ] as const;
 
+/**
+ * SUPERSEDED by KEY_FEATURES in src/data/features.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/features.ts instead, or delete this once you are sure.
+ */
 export const FEATURES = [
   {
     title: "4K UHD IPTV UK Streaming",
@@ -109,6 +131,12 @@ export const FEATURES = [
   },
 ] as const;
 
+/**
+ * SUPERSEDED by TIERS in src/data/pricing.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/pricing.ts instead, or delete this once you are sure.
+ */
 export const PRICING_PLANS = [
   {
     id: "bronze",
@@ -228,6 +256,12 @@ export const PRICING_PLANS = [
   },
 ] as const;
 
+/**
+ * SUPERSEDED by DEVICES in src/data/devices.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/devices.ts instead, or delete this once you are sure.
+ */
 export const DEVICES = [
   { name: "Amazon Fire Stick", icon: "Flame" as const },
   { name: "Smart TV", icon: "Tv" as const },
@@ -237,6 +271,12 @@ export const DEVICES = [
   { name: "Apple TV", icon: "Airplay" as const },
 ] as const;
 
+/**
+ * SUPERSEDED by FAQ in src/data/faq.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/faq.ts instead, or delete this once you are sure.
+ */
 export const FAQ_ITEMS = [
   {
     question: "What is an IPTV subscription?",
@@ -290,6 +330,12 @@ export const FAQ_ITEMS = [
   },
 ] as const;
 
+/**
+ * SUPERSEDED by MOVIES / CHANNELS in src/data/showcase.ts, which is what the page actually
+ * renders. Kept because the corrected figures live here too, but nothing
+ * imports it any more: editing this array changes nothing on the site.
+ * Change src/data/showcase.ts instead, or delete this once you are sure.
+ */
 export const CHANNEL_CATEGORIES = [
   {
     name: "Premium IPTV Entertainment Channels",
