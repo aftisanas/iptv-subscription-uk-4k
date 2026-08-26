@@ -80,7 +80,10 @@ export default function EditorialPolicyPage() {
               Our conflict of interest, stated plainly
             </h2>
             <p>
-              {SITE_NAME} sells IPTV subscriptions. Several of our guides give
+              <Link href="/" className="text-primary hover:underline">
+                {SITE_NAME}
+              </Link>{" "}
+              sells IPTV subscriptions. Several of our guides give
               advice on how to evaluate and buy an IPTV subscription. That is a
               conflict of interest, and no editorial policy makes it disappear.
             </p>

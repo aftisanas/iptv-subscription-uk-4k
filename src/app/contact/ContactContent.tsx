@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Mail, Clock, MapPin, Headphones, Star, HeadphonesIcon } from "lucide-react";
 import { CONTACT_EMAIL } from "@/lib/constants";
 
@@ -95,7 +96,11 @@ export default function ContactContent() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-muted leading-relaxed prose-body"
           >
-            The UK-based IPTV Subscription UK 4K support team is available 24/7 via live chat, email and WhatsApp — a named British team with deep knowledge of the UK IPTV market. Average first response: under four minutes.
+            The UK-based IPTV Subscription UK 4K support team is available 24/7 via live chat, email and WhatsApp — a named British team with deep knowledge of the UK IPTV market. Average first response: under four minutes. If your question is about what a term includes, you can{" "}
+            <Link href="/" className="text-accent hover:text-accent-hover underline-offset-2">
+              view plans
+            </Link>{" "}
+            first.
           </motion.p>
         </div>
 

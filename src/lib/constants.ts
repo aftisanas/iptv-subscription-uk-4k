@@ -345,7 +345,7 @@ export const BLOG_POSTS = [
       "How to check an operator, pick a term, pay through a traceable method and test inside your refund window — the process, for any UK provider.",
     date: "2026-07-17",
     updated: "2026-07-17",
-    readTime: "8 min read",
+    readTime: "12 min read",
     category: "Guide",
     keywords: [
       "how to buy iptv subscription uk",
@@ -361,7 +361,7 @@ export const BLOG_POSTS = [
       "Channels, VOD, catch-up, EPG, connections and add-ons — what a UK IPTV subscription genuinely includes, and what is merely marketed as included.",
     date: "2026-07-17",
     updated: "2026-07-17",
-    readTime: "9 min read",
+    readTime: "12 min read",
     category: "Guide",
     keywords: [
       "what's included in an iptv subscription",
@@ -377,7 +377,7 @@ export const BLOG_POSTS = [
       "Your rights under UK consumer law when an IPTV subscription auto-renews, fails to deliver, or refuses a refund — including chargeback and Section 75.",
     date: "2026-07-17",
     updated: "2026-07-17",
-    readTime: "8 min read",
+    readTime: "11 min read",
     category: "Legal",
     keywords: [
       "iptv refund uk",
@@ -393,7 +393,7 @@ export const BLOG_POSTS = [
       "A full Fire TV Stick walkthrough — installing a player app, entering M3U or Xtream Codes, loading the EPG, and fixing the faults that actually occur.",
     date: "2026-03-20",
     updated: "2026-07-31",
-    readTime: "8 min read",
+    readTime: "14 min read",
     category: "Tutorial",
     keywords: [
       "iptv firestick setup",

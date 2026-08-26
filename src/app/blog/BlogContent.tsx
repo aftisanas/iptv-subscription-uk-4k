@@ -94,11 +94,12 @@ export default function BlogContent() {
             className="mx-auto max-w-2xl text-lg text-muted leading-relaxed prose-body"
           >
             Expert articles on IPTV setup, streaming optimisation, device guides,
-            and the latest in UK television — essential reading for informed{" "}
-            <Link href="/#pricing" className="text-accent hover:text-accent-hover underline-offset-2">
-              IPTV subscription
-            </Link>{" "}
-            decisions.
+            and the latest in UK television — written to be run against any
+            provider, including our own{" "}
+            <Link href="/" className="text-accent hover:text-accent-hover underline-offset-2">
+              IPTV subscription plans
+            </Link>
+            .
           </motion.p>
         </div>
 
