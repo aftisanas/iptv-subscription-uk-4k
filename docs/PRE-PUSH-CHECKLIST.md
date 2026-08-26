@@ -163,20 +163,45 @@ Each was confirmed to have **zero importers** before removal. `SectionLink` was 
 
 ---
 
-## Three things I found that need **your** decision — I did not change them
+## Contradictory claims — found, listed, and now fixed
 
-Rule 4 says copy comes from `content-ready/` and I ask when something is missing. These are all live claims the honesty pass would have caught, but none was in scope and none is covered by an approved replacement.
+All three flagged here originally have been resolved, plus four more found by sweeping the five
+policy pages as a set rather than reading the two lines already known about.
 
-1. 🔴 **`src/app/terms/page.tsx`: "We offer monthly, quarterly, and annual billing cycles. Payment is due at the start of each billing period."**
-   This describes recurring billing on a service whose central differentiator is that nothing auto-renews and no card is stored. It is the same contradiction as the refund-page line you authorised me to fix, on a page I was not authorised to touch. It also disagrees with the renewal blog post, which now says explicitly that there is no auto-renewal here.
+| Where | Claim | Now |
+|---|---|---|
+| `terms` §3 | "monthly, quarterly, and annual billing cycles… payment due at the start of each billing period" | One payment for a fixed 3/6/12/24-month term, arranged over WhatsApp, no card stored, no recurring billing, access ends when the term expires, no cancellation step |
+| `terms` §4 | refunds "processed within 5–10 business days" | Aligned to `/refund`: 24–48 h to process, 5–10 business days to appear |
+| `contact` lede | "a named British team" | Removed — `/editorial-policy` states articles publish under the company name with no individual byline |
+| `contact` lede | "Average first response: under four minutes" | Removed — unmeasured, and the exact thing `/editorial-policy` says we do not publish |
+| `contact` lede | "live chat" | Removed — it does not exist; `contactMethods` has one entry, email |
+| `privacy` §1 | collects "payment information" + "device information, IP addresses, viewing preferences" | Rewritten — no payment is taken on the site, and no analytics script exists |
+| `privacy` §2 | "process payments" | Rewritten |
+| `privacy` §3 | "secure storage of payment details" | Rewritten — false, and a statement against interest if a breach were ever alleged |
+| `privacy` §5 | "analytics cookies to understand how visitors interact with our site" | Rewritten — verified nothing loads |
 
-2. 🟠 **`src/app/contact/ContactContent.tsx`: "Average first response: under four minutes."**
-   An unsubstantiated performance metric, of exactly the class purged in `50765ad` (`99.9% uptime`, `4.9/5`, `50,000 subscribers`). If it is not measured, it should go.
+**Verified before rewriting, not assumed:** no `gtag`, GTM, Plausible, Umami, PostHog, Hotjar, Meta
+pixel or Clarity anywhere in `src/` or `next.config.ts`; and no `<form>`, payment SDK or card field
+anywhere on the site. Checkout is WhatsApp only.
 
-3. 🟠 **Same file: "a named British team with deep knowledge of the UK IPTV market."**
-   `/editorial-policy` states that articles are published under the company name and **no individual byline is claimed**. "A named British team" asserts the opposite on another page. One of the two needs to move.
+**`/refund` and `/editorial-policy` are clean.** `/editorial-policy` is in fact the standard the other
+two pages were failing against — it already says the site does not publish "subscriber counts,
+average ratings, or uptime percentages we cannot substantiate", which is precisely what the
+`/contact` four-minute metric was.
 
-Also minor: `/blog`'s lede opens "Expert articles on IPTV setup…". "Expert" is a self-assessed E-E-A-T claim of the same family. Not changed.
+### Still open — outside the class you asked me to fix, so listed rather than changed
+
+1. **`privacy` §6 designates a "Data Protection Officer".** A DPO is a specific UK GDPR role with
+   statutory duties and is mandatory only in defined circumstances. If no one holds it, the line
+   should read "contact us".
+2. **`dmca` invokes the US Digital Millennium Copyright Act and a "designated copyright agent".** For
+   a UK operator the accurate frame is notice-and-takedown. The page functions either way; the
+   citation is simply the wrong jurisdiction.
+3. **`contact` says "Based in London, United Kingdom"** while the `Organization` schema carries no
+   `address`. Either substantiate it or drop it.
+4. **`contact` lists four departments** — Customer Support, Technical Support, Sales, and **"Billing
+   Enquiries, Mon–Fri 9am–6pm"** — on a service with no recurring billing and a single shared
+   mailbox. The hours block asserts a structure the rest of the site contradicts.
 
 ---
 

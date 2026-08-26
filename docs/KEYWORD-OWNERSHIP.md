@@ -283,8 +283,17 @@ page: the `0+` metrics bug is gone, indexation blockers are gone, the schema no 
 absent content, no page competes with another, and the copy no longer contradicts itself across
 `/terms`, `/refund` and the blog. Those were necessary. They were never sufficient.
 
+Since this audit was first written, the last of the self-contradicting copy has gone too: `/terms`
+no longer describes recurring billing cycles, `/privacy` no longer claims to store payment details
+or run analytics, and `/contact` no longer advertises a live chat, a named British team or an
+unmeasured four-minute response time. Every check in this document was re-run afterwards and none
+moved: the plural is still exclusive to `/`, the link margin is still 5.10x, the exact-match anchor
+count is still 3, and crawl integrity is unchanged. Four lesser items — a Data Protection Officer
+designation, a US-law DMCA citation, an unsubstantiated London address, and a "Billing Enquiries"
+department on a service with no billing — are listed in `docs/PRE-PUSH-CHECKLIST.md` and still need
+your ruling.
+
 **The measurement that decides this project is referring domains, not any figure above.** If, ninety
 days after deploy, non-spam referring domains is still 1, every table in this document will still
 read exactly as it does now and organic traffic will still be zero — and that will be the link
-dependency going unmet, not this work failing. Three items on `/terms` and `/contact` flagged in
-`docs/PRE-PUSH-CHECKLIST.md` still need your ruling before any of it ships.
+dependency going unmet, not this work failing. Four remaining items in `docs/PRE-PUSH-CHECKLIST.md` still need your ruling before it ships.
