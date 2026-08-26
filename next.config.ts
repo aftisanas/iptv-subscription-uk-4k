@@ -53,6 +53,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // Thin (601 words) and never indexed. Redirected blog->blog rather than
+        // to "/" so the target is topically coherent; no equity is at stake.
+        source: "/blog/best-iptv-uk-guide-2026",
+        destination: "/blog/how-to-buy-iptv-subscription-uk",
+        permanent: true,
+      },
+      {
         source: "/iptv-free-trial",
         destination: "/#pricing",
         permanent: true,

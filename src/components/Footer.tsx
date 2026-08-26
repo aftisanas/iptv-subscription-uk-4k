@@ -4,6 +4,7 @@ import { Mail, MapPin, MessageCircle } from "lucide-react";
 import {
   NAV_LINKS,
   LEGAL_LINKS,
+  BLOG_POSTS,
   SITE_NAME,
   CONTACT_EMAIL,
   SITE_LOGO_PATH,
@@ -85,19 +86,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Guides — replaces the headed Legal column. Legal moves to a single
+              compact row in the bottom bar: same link count, far less prominence,
+              and the slot now feeds /blog and the posts, which were link-starved. */}
           <div className="lg:justify-self-start">
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-              Legal
+              Guides
             </h3>
             <ul className="space-y-3">
-              {LEGAL_LINKS.map((link) => (
-                <li key={link.href}>
+              {BLOG_POSTS.map((post) => (
+                <li key={post.slug}>
                   <Link
-                    href={link.href}
+                    href={`/blog/${post.slug}`}
                     className="text-sm text-muted transition-colors hover:text-violet-600"
                   >
-                    {link.label}
+                    {post.title}
                   </Link>
                 </li>
               ))}
@@ -108,9 +111,21 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-violet-100/50 py-6">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 sm:justify-start">
+            {LEGAL_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-xs text-muted transition-colors hover:text-violet-600"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted text-center sm:text-left">
-              © {new Date().getFullYear()} iptv-subscription-uk-4k.com — IPTV Subscription UK | 4K UHD IPTV Service | British IPTV Provider
+              © {new Date().getFullYear()} iptv-subscription-uk-4k.com — IPTV subscriptions for UK homes
             </p>
             <p className="text-xs text-gray-500 text-center sm:text-right max-w-md">
               {SITE_NAME} is not affiliated with any television networks or content providers.

@@ -63,9 +63,9 @@ export const FEATURES = [
     icon: "Tv" as const,
   },
   {
-    title: "Anti-Freeze Fast IPTV Technology",
+    title: "Adaptive Bitrate Streaming",
     description:
-      "Our fast IPTV network uses smart load balancing across UK servers. The stream stays smooth during peak fixtures and primetime.",
+      "Streams adjust to the bandwidth actually available at your device, so picture quality steps down before playback stops. Around 25 Mbps gives you 4K; 10 Mbps is comfortable for HD.",
     icon: "Zap" as const,
   },
   {
@@ -93,9 +93,9 @@ export const FEATURES = [
     icon: "Smartphone" as const,
   },
   {
-    title: "Reliable IPTV Uptime You Can Trust",
+    title: "If A Stream Fails, You Have A Remedy",
     description:
-      "Our IPTV grid is monitored around the clock. If a server wobbles, your stream reroutes in seconds so you keep watching.",
+      "Message support on WhatsApp with the channel and device and we will work it through with you. If the service does not do what this page says, the 30-day money-back guarantee is the backstop.",
     icon: "Film" as const,
   },
 ] as const;
@@ -108,7 +108,7 @@ export const PRICING_PLANS = [
     subtitle: "Try it risk-free for a full season",
     price: 25.99,
     originalPrice: 39.99,
-    perMonth: 12.99,
+    perMonth: 8.66,
     period: "3 months",
     devices: 5,
     proxyPrice: 4.75,
@@ -137,7 +137,7 @@ export const PRICING_PLANS = [
     subtitle: "Half a year of 4K sport, films and drama",
     price: 35.99,
     originalPrice: 59.99,
-    perMonth: 10.99,
+    perMonth: 6.0,
     period: "6 months",
     devices: 5,
     proxyPrice: 9.5,
@@ -166,7 +166,7 @@ export const PRICING_PLANS = [
     subtitle: "Best value for full-year UK sport and TV",
     price: 49.99,
     originalPrice: 89.99,
-    perMonth: 7.79,
+    perMonth: 4.17,
     period: "year",
     devices: 5,
     proxyPrice: 19.0,
@@ -195,7 +195,7 @@ export const PRICING_PLANS = [
     subtitle: "Two years of premium IPTV, locked low",
     price: 79.99,
     originalPrice: 159.99,
-    perMonth: 5.85,
+    perMonth: 3.33,
     period: "2 years",
     devices: 5,
     proxyPrice: 38.0,
@@ -247,7 +247,7 @@ export const FAQ_ITEMS = [
   {
     question: "What UK channels are included?",
     answer:
-      "You get comprehensive British and international channel coverage — live news, entertainment, sport, kids and documentaries in HD and 4K. The full line-up sits on the Guide page.",
+      "You get comprehensive British and international channel coverage — live news, entertainment, sport, kids and documentaries in HD and 4K. Ask on WhatsApp before you buy if you want a specific channel confirmed.",
   },
   {
     question: "Do I need a VPN for IPTV in the UK?",
@@ -272,12 +272,12 @@ export const FAQ_ITEMS = [
   {
     question: "Do you offer a cheap IPTV subscription?",
     answer:
-      "Yes, our cheap IPTV subscription starts from £12.99 per month on the 3-month plan. The 12 and 24-month plans drop that rate as low as £5.85/month.",
+      "Yes, our cheap IPTV subscription starts from £8.66 per month on the 3-month plan. The 12 and 24-month plans drop that rate as low as £3.33/month.",
   },
   {
     question: "What makes this IPTV service different?",
     answer:
-      "Other IPTV service brands oversell and then freeze on match night. Our UK server grid and anti-freeze tech hold a clean 4K stream when it matters.",
+      "You pay once, over WhatsApp, with no card stored and nothing set to auto-renew — so there is no second charge to worry about. And you have 30 days to ask for the money back if it does not suit you.",
   },
 ] as const;
 
@@ -331,12 +331,12 @@ export const CHANNEL_CATEGORIES = [
 export const BLOG_POSTS = [
   {
     slug: "how-to-buy-iptv-subscription-uk",
-    title: "How To Buy An IPTV Subscription In The UK — A Step-By-Step Guide",
+    title: "How To Buy An IPTV Subscription Safely In The UK",
     excerpt:
-      "Buying an IPTV subscription in the UK — the practical steps from decision to first stream. Payment verification, activation, and how to use your refund window properly.",
+      "How to check an operator, pick a term, pay through a traceable method and test inside your refund window — the process, for any UK provider.",
     date: "2026-07-17",
     updated: "2026-07-17",
-    readTime: "14 min read",
+    readTime: "8 min read",
     category: "Guide",
     keywords: [
       "how to buy iptv subscription uk",
@@ -347,12 +347,12 @@ export const BLOG_POSTS = [
   },
   {
     slug: "whats-included-in-iptv-subscription-uk",
-    title: "What's Included In A UK IPTV Subscription? The Complete Anatomy",
+    title: "What's Included In A UK IPTV Subscription",
     excerpt:
-      "What UK IPTV subscriptions actually include — channels, VOD, catch-up, EPG, connections and add-ons. What's genuinely bundled versus what's merely marketed as bundled.",
+      "Channels, VOD, catch-up, EPG, connections and add-ons — what a UK IPTV subscription genuinely includes, and what is merely marketed as included.",
     date: "2026-07-17",
     updated: "2026-07-17",
-    readTime: "14 min read",
+    readTime: "9 min read",
     category: "Guide",
     keywords: [
       "what's included in an iptv subscription",
@@ -363,12 +363,12 @@ export const BLOG_POSTS = [
   },
   {
     slug: "iptv-subscription-renewal-cancellation-refund-uk",
-    title: "IPTV Subscription Renewal, Cancellation And Refund Rights In The UK",
+    title: "IPTV Renewal, Cancellation And Refund Rights In The UK",
     excerpt:
-      "UK consumer-rights guide for IPTV subscribers — the cooling-off period, cancellation, refund routes, chargeback, and what to do when a service doesn't deliver.",
+      "Your rights under UK consumer law when an IPTV subscription auto-renews, fails to deliver, or refuses a refund — including chargeback and Section 75.",
     date: "2026-07-17",
     updated: "2026-07-17",
-    readTime: "13 min read",
+    readTime: "8 min read",
     category: "Legal",
     keywords: [
       "iptv refund uk",
@@ -378,29 +378,13 @@ export const BLOG_POSTS = [
     ],
   },
   {
-    slug: "best-iptv-uk-guide-2026",
-    title: "Best IPTV UK — How To Choose A Trusted IPTV Provider",
-    excerpt:
-      "A seven-criteria framework for judging a UK IPTV provider — channel depth, peak-hour stability, real streaming quality, EPG and catch-up, device support, support responsiveness and honest pricing. Includes the red flags worth walking away from.",
-    date: "2026-04-01",
-    updated: "2026-07-31",
-    readTime: "13 min read",
-    category: "Guide",
-    keywords: [
-      "best iptv uk",
-      "trusted iptv provider uk",
-      "how to choose an iptv service",
-      "iptv provider red flags",
-    ],
-  },
-  {
     slug: "how-to-setup-iptv-firestick",
-    title: "How To Set Up An IPTV Subscription On Amazon Fire Stick",
+    title: "How To Set Up An IPTV Subscription On A Fire TV Stick",
     excerpt:
-      "Install and configure IPTV on an Amazon Fire Stick, step by step — sideloading via Downloader, choosing between IPTV Smarters Pro and TiviMate, entering Xtream Codes or M3U details, and fixing the buffering, EPG and playback problems that come up most often.",
+      "A full Fire TV Stick walkthrough — installing a player app, entering M3U or Xtream Codes, loading the EPG, and fixing the faults that actually occur.",
     date: "2026-03-20",
     updated: "2026-07-31",
-    readTime: "13 min read",
+    readTime: "8 min read",
     category: "Tutorial",
     keywords: [
       "iptv firestick setup",

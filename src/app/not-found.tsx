@@ -28,7 +28,7 @@ export default function NotFound() {
             Go Home
           </Link>
           <Link
-            href="/iptv-subscription-uk"
+            href="/#pricing"
             className="inline-flex items-center gap-2 rounded-xl border border-violet-200 bg-white px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-violet-300 hover:bg-violet-50"
           >
             View Pricing

@@ -8,7 +8,7 @@ import {
 } from "@/lib/constants";
 
 const title = "Editorial Policy";
-const description = `How ${SITE_NAME} researches, writes, sources and reviews its guides — including how we handle the conflict of interest in publishing buying advice about a market we sell into.`;
+const description = `How ${SITE_NAME} researches, writes and reviews its guides — and how we handle the conflict of interest in selling into the market we advise on.`;
 const url = `${SITE_URL}/editorial-policy`;
 
 export const metadata: Metadata = {

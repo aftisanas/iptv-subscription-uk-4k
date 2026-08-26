@@ -81,7 +81,7 @@ export default function BlogContent() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            <span className="text-white">IPTV UK Guides &</span>
+            <span className="text-white">IPTV UK Guides &amp;{" "}</span>
             <br />
             <span className="gradient-text-hero">Streaming Tips</span>
           </motion.h1>
