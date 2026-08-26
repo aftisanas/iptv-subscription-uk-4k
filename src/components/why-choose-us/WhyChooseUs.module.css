@@ -1,0 +1,201 @@
+/* ── Why Choose Us ──────────────────────────────────────────────────────── */
+/* Three value cards, built from the same parts as the plan cards above: the
+   hero's glass, its hairline, its 16px radius, its lit top edge. The title
+   follows the site's rule — white falling to translucent, with the flare on
+   the last word only. */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(88px, 12vh, 160px) var(--gutter) clamp(92px, 12.5vh, 168px);
+  background: var(--stage-deep);
+  text-align: center;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 72% 44% at 50% 0%,
+      rgba(139, 26, 26, 0.34) 0%,
+      rgba(100, 18, 18, 0.17) 32%,
+      rgba(60, 10, 10, 0.07) 56%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 50% 28% at 50% 4%,
+      rgba(180, 40, 20, 0.14) 0%,
+      transparent 70%
+    );
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ── Heading ────────────────────────────────────────────────────────────── */
+/* Same treatment as "Choose Your Plan" and "Key Features": the site does not
+   have three different title styles. */
+.heading {
+  margin: 0 0 clamp(40px, 6vh, 76px);
+  font-size: clamp(34px, 4.4vw, 68px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(177deg, #ffffff 0%, #ffffff 36%, rgba(255, 255, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  translate: 0 26px;
+}
+
+.flare {
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section[data-revealed] .heading {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 1s var(--ease-out), translate 1s var(--ease-out);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.6vw, 24px);
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+/* The plan card's recipe, exactly — glass, hairline, 16px, lit top edge. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(26px, 2.4vw, 34px) clamp(22px, 2vw, 30px);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 24px 60px rgba(0, 0, 0, 0.5);
+  text-align: left;
+
+  opacity: 0;
+  translate: 0 28px;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.section[data-revealed] .card {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.section[data-revealed] .card[data-index="0"] { transition-delay: 0.1s; }
+.section[data-revealed] .card[data-index="1"] { transition-delay: 0.22s; }
+.section[data-revealed] .card[data-index="2"] { transition-delay: 0.34s; }
+
+/* Lift on `transform`, not `translate` — the reveal owns `translate`, and a
+   hover rule on the same property loses to it on specificity and silently
+   does nothing. */
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 160, 43, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    0 28px 68px rgba(0, 0, 0, 0.55),
+    0 0 44px rgba(255, 160, 43, 0.1);
+}
+
+/* ── Icon ───────────────────────────────────────────────────────────────── */
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 160, 43, 0.24);
+  background: rgba(255, 160, 43, 0.07);
+  color: var(--accent-amber);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── Text ───────────────────────────────────────────────────────────────── */
+/* Plain ink, like the plan card's term. The gradient belongs to the section
+   title; putting it on every card title as well flattens the hierarchy. */
+.cardTitle {
+  margin: 0 0 10px;
+  font-size: clamp(16px, 1.28vw, 19px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.cardBody {
+  margin: 0;
+  font-size: clamp(13px, 0.98vw, 15px);
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .heading {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .card {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

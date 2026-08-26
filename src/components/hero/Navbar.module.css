@@ -1,0 +1,365 @@
+.nav {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px var(--gutter-nav) 0;
+  animation: dropIn 1s var(--ease-out) 0.05s both;
+}
+
+/* ── Brand mark ─────────────────────────────────────────────────────────── */
+.brand {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -8px;
+  border-radius: 12px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.brand:hover {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.mark {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(96, 156, 240, 0.4));
+}
+
+/* ── Centre capsule ─────────────────────────────────────────────────────── */
+.pill {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.032);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 34px rgba(0, 0, 0, 0.45);
+}
+
+.link {
+  padding: 0 18px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink-muted);
+  background: transparent;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition:
+    color 0.35s var(--ease-out),
+    background-color 0.35s var(--ease-out);
+}
+
+.link:hover {
+  color: var(--ink-strong);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.linkActive {
+  color: var(--ink);
+}
+
+/* ── Solid CTA ──────────────────────────────────────────────────────────── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 19px;
+  border-radius: 999px;
+  background: var(--cta-face);
+  color: var(--cta-ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 2px 10px rgba(0, 0, 0, 0.4),
+    0 0 34px rgba(255, 255, 255, 0.13);
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 6px 18px rgba(0, 0, 0, 0.45),
+    0 0 46px rgba(255, 255, 255, 0.2);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  width: 11px;
+  height: 11px;
+  transition: translate 0.45s var(--ease-out);
+}
+
+.cta:hover .arrow {
+  translate: 1.5px -1.5px;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; translate: 0 -14px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+/* ── Mobile trigger ─────────────────────────────────────────────────────── */
+/* Hidden on desktop; the two rules below swap it in for the capsule and the
+   solid CTA in one step, so there is never a half-collapsed bar. */
+.burger,
+.sheet,
+.scrim {
+  display: none;
+}
+
+/* ── Narrow ─────────────────────────────────────────────────────────────── */
+@media (max-width: 1080px) and (min-width: 761px) {
+  .link {
+    padding: 0 13px;
+    font-size: 12.5px;
+  }
+
+  .cta {
+    height: 37px;
+    padding: 0 16px;
+    font-size: 12.5px;
+  }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .nav {
+    padding: 14px var(--gutter-nav) 0;
+  }
+
+  /* The capsule and the light CTA both go: four links do not fit at tap size,
+     and a white pill next to the burger reads as two competing primaries. */
+  .pill,
+  .cta {
+    display: none;
+  }
+
+  .burger {
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    width: 46px;
+    height: 46px;
+    margin-right: -6px;
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    background: var(--glass);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+  }
+
+  .burgerBar {
+    display: block;
+    width: 18px;
+    height: 1.6px;
+    border-radius: 2px;
+    background: var(--ink);
+  }
+
+  .burgerBar:last-child {
+    width: 12px;
+    margin-left: auto;
+    background: var(--accent-amber);
+    box-shadow: 0 0 8px rgba(255, 122, 34, 0.55);
+  }
+
+  /* ── Sheet ─────────────────────────────────────────────────────────── */
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    border: 0;
+    padding: 0;
+    background: rgba(2, 2, 3, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.32s var(--ease-out), visibility 0.32s;
+  }
+
+  .scrim[data-open] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .sheet {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    z-index: 70;
+    padding: 22px 20px 20px;
+    border: 1px solid var(--hairline);
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(255, 122, 34, 0.08) 0%, transparent 42%),
+      #08080b;
+    backdrop-filter: blur(26px) saturate(1.3);
+    -webkit-backdrop-filter: blur(26px) saturate(1.3);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.66);
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 -14px;
+    transition:
+      opacity 0.34s var(--ease-out),
+      translate 0.34s var(--ease-out),
+      visibility 0.34s;
+  }
+
+  .sheet::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22px;
+    right: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent-flare);
+    box-shadow: 0 0 12px rgba(255, 74, 28, 0.6);
+  }
+
+  .sheet[data-open] {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+  }
+
+  .close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+  }
+
+  .close svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .close:hover,
+  .close:focus-visible {
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .sheetLabel {
+    margin: 0 44px 16px 0;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .sheetNav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sheetLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px 2px;
+    border-top: 1px solid var(--hairline-soft);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+  }
+
+  .sheetLink:last-child {
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+
+  .sheetArrow {
+    width: 13px;
+    height: 13px;
+    color: var(--accent-amber);
+    opacity: 0.8;
+  }
+
+  .sheetCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 15px 20px;
+    border-radius: 999px;
+    background: var(--accent-flare);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.008em;
+    box-shadow:
+      0 0 24px rgba(255, 58, 26, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  }
+
+  .sheetFoot {
+    margin: 12px 0 0;
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--ink-faint);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    animation: none;
+  }
+
+  .cta,
+  .arrow,
+  .brand,
+  .sheet,
+  .scrim {
+    transition: none;
+  }
+}

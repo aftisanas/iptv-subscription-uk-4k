@@ -1,0 +1,241 @@
+/* ── Device support ─────────────────────────────────────────────────────── */
+/* Twelve wordmarks in the site's glass tiles. The section leans cool — the
+   hero's rim blue — so it reads as a breath between the two warm sections
+   either side of it while staying inside the same palette. */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(88px, 12vh, 160px) 0 clamp(92px, 12.5vh, 168px);
+  background: var(--stage-deep);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 66% 38% at 50% 0%, rgba(139, 26, 26, 0.2) 0%, rgba(100, 18, 18, 0.09) 34%, transparent 72%),
+    radial-gradient(ellipse 60% 50% at 50% 62%, rgba(77, 134, 220, 0.14) 0%, rgba(60, 108, 190, 0.06) 46%, transparent 78%);
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+
+/* ── Head ───────────────────────────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+.dash {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-red);
+  box-shadow: 0 0 10px rgba(255, 45, 32, 0.55);
+}
+
+.title {
+  margin: clamp(14px, 1.8vh, 22px) 0 0;
+  max-width: 22ch;
+  text-wrap: balance;
+  font-size: clamp(32px, 4vw, 62px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(177deg, #ffffff 0%, #ffffff 36%, rgba(255, 255, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  translate: 0 28px;
+}
+
+.flare {
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lede {
+  max-width: 620px;
+  margin: clamp(18px, 2.4vh, 28px) 0 0;
+  font-size: clamp(13.5px, 1.05vw, 16px);
+  line-height: 1.6;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+/* ── Tiles ──────────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.3vw, 20px);
+  width: 100%;
+  margin: clamp(34px, 4.6vh, 58px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile {
+  display: grid;
+  place-items: center;
+  min-height: clamp(88px, 8.4vw, 122px);
+  padding: clamp(16px, 1.8vw, 26px);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 20px 46px rgba(0, 0, 0, 0.45);
+
+  opacity: 0;
+  translate: 0 18px;
+  transition:
+    opacity 0.6s var(--ease-out),
+    translate 0.6s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+
+/* Lift on `transform`; `translate` belongs to the reveal and would lose to it. */
+.tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(77, 134, 220, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    0 24px 56px rgba(0, 0, 0, 0.5),
+    0 0 38px rgba(77, 134, 220, 0.12);
+}
+
+.mark {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: clamp(30px, 3vw, 44px);
+  object-fit: contain;
+  /* Resting a shade below full white so twelve marks do not out-shout the
+     headline; they come up to full on hover. */
+  opacity: 0.82;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.tile:hover .mark {
+  opacity: 1;
+}
+
+/* ── Note ───────────────────────────────────────────────────────────────── */
+.note {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: clamp(26px, 3.4vh, 42px) 0 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  translate: 0 16px;
+}
+
+.noteDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rim-blue);
+  box-shadow: 0 0 10px rgba(77, 134, 220, 0.7);
+}
+
+/* ── Reveal ─────────────────────────────────────────────────────────────── */
+.section[data-revealed] .eyebrow,
+.section[data-revealed] .title,
+.section[data-revealed] .lede,
+.section[data-revealed] .note {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out);
+}
+
+.section[data-revealed] .title { transition-delay: 0.1s; }
+.section[data-revealed] .lede { transition-delay: 0.2s; }
+.section[data-revealed] .note { transition-delay: 0.72s; }
+
+.section[data-revealed] .tile {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: calc(0.28s + var(--i) * 0.035s);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .tile {
+    min-height: 76px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .title,
+  .lede,
+  .note,
+  .tile {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+}

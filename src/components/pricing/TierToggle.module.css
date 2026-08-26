@@ -1,0 +1,163 @@
+/* ── Standard / Premium switch ──────────────────────────────────────────── */
+/* The hero navbar's glass pill, doing a second job. Same surface, same
+   hairline, same blur — the only additions are the travelling capsule and the
+   accent each side resolves to: cool steel for Standard, the flare's amber end
+   for Premium. */
+
+.switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: clamp(300px, 36vw, 452px);
+  padding: 6px;
+  border: 1px solid var(--hairline-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.032);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 34px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.55s var(--ease-out), box-shadow 0.55s var(--ease-out);
+}
+
+.switch[data-active="premium"] {
+  border-color: rgba(255, 160, 43, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 34px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(255, 160, 43, 0.12);
+}
+
+/* ── The travelling capsule ─────────────────────────────────────────────── */
+.glide {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: calc(50% - 6px);
+  border-radius: 999px;
+  transition:
+    translate 0.52s var(--ease-out),
+    background 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+
+/* Standard: the hero's off-white CTA face. */
+.switch[data-active="standard"] .glide {
+  translate: 0 0;
+  background: var(--cta-face);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 2px 10px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(255, 255, 255, 0.12);
+}
+
+/* Premium: the accent flare, run to its amber end. */
+.switch[data-active="premium"] .glide {
+  translate: 100% 0;
+  background: linear-gradient(96deg, #ff7a1f 0%, #ffa02b 52%, #ffc95f 100%);
+  box-shadow:
+    0 0 24px rgba(255, 160, 43, 0.42),
+    0 0 58px rgba(255, 190, 90, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ── Options ────────────────────────────────────────────────────────────── */
+.option {
+  position: relative;
+  z-index: 1;
+  /* Equal halves regardless of label length — this is what keeps the capsule
+     aligned to the segment it is lighting. */
+  flex: 1 1 0;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-size: clamp(12.5px, 1vw, 13.5px);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.4s var(--ease-out);
+}
+
+.option[data-tier="standard"] {
+  color: var(--ink-muted);
+}
+
+.option[data-tier="premium"] {
+  color: rgba(255, 176, 74, 0.78);
+}
+
+.option:hover {
+  color: var(--ink-strong);
+}
+
+/* Whichever side the capsule is under reads as ink on a light surface. */
+.switch[data-active="standard"] .option[data-tier="standard"],
+.switch[data-active="standard"] .option[data-tier="standard"]:hover {
+  color: var(--cta-ink);
+}
+
+.switch[data-active="premium"] .option[data-tier="premium"],
+.switch[data-active="premium"] .option[data-tier="premium"]:hover {
+  color: #1a1105;
+}
+
+/* ── Tier badge ─────────────────────────────────────────────────────────── */
+.badge {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(255, 160, 43, 0.3);
+  color: var(--accent-amber);
+  transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+}
+
+.switch[data-active="premium"] .badge {
+  border-color: rgba(26, 17, 5, 0.35);
+  background: rgba(26, 17, 5, 0.82);
+  color: #ffca77;
+}
+
+@media (max-width: 520px) {
+  .switch {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .option {
+    gap: 6px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  .badge {
+    padding: 3px 6px;
+    font-size: 8.5px;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .glide,
+  .option,
+  .badge {
+    transition: none;
+  }
+}

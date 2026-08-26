@@ -1,0 +1,289 @@
+/* ── Closing call to action ─────────────────────────────────────────────── */
+/* The page's last screen before the footer. Everything is the site's own: the
+   navbar's glass pill for the badge, the flare on the title's tail, the hero's
+   hot button, and a ghost beside it. */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(96px, 13vh, 175px) 0 clamp(100px, 13.5vh, 185px);
+  background: var(--stage-deep);
+}
+
+/* Brighter than the sections above it — this is the one that has to convert. */
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 76% 52% at 50% 0%, rgba(150, 30, 22, 0.34) 0%, rgba(105, 20, 16, 0.16) 34%, transparent 76%),
+    radial-gradient(ellipse 54% 40% at 50% 4%, rgba(255, 122, 34, 0.12) 0%, transparent 72%),
+    radial-gradient(ellipse 60% 44% at 50% 100%, rgba(77, 134, 220, 0.1) 0%, transparent 74%);
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+
+/* ── Badge ──────────────────────────────────────────────────────────────── */
+/* The navbar's pill, at label size. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 9px 18px 9px 13px;
+  border: 1px solid var(--hairline-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.032);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 30px rgba(0, 0, 0, 0.45);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+.spark {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  color: var(--accent-amber);
+}
+
+.spark svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Title ──────────────────────────────────────────────────────────────── */
+.title {
+  margin: clamp(20px, 2.6vh, 30px) 0 0;
+  max-width: 18ch;
+  text-wrap: balance;
+  font-size: clamp(36px, 5vw, 78px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(177deg, #ffffff 0%, #ffffff 36%, rgba(255, 255, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  translate: 0 30px;
+}
+
+.flare {
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Body ───────────────────────────────────────────────────────────────── */
+.body {
+  max-width: 680px;
+  margin: clamp(20px, 2.8vh, 30px) 0 0;
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.65;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+/* The load-bearing phrases, picked out rather than linked — nothing here
+   navigates away from the button underneath. */
+.mark {
+  font-weight: 600;
+  color: #ffce93;
+}
+
+/* ── Actions ────────────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(12px, 1.4vw, 18px);
+  margin: clamp(28px, 3.8vh, 46px) 0 0;
+  opacity: 0;
+  translate: 0 20px;
+}
+
+/* The hero's hot button. */
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 30px;
+  border-radius: 999px;
+  background: var(--accent-flare);
+  color: #fff;
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  box-shadow:
+    0 0 26px rgba(255, 58, 26, 0.45),
+    0 0 70px rgba(255, 80, 30, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 38px rgba(255, 58, 26, 0.6),
+    0 0 92px rgba(255, 80, 30, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.primary:active {
+  transform: translateY(0);
+}
+
+.play {
+  width: 13px;
+  height: 13px;
+  opacity: 0.92;
+}
+
+.arrow {
+  width: 12px;
+  height: 12px;
+  opacity: 0.85;
+  transition: translate 0.4s var(--ease-out);
+}
+
+.primary:hover .arrow {
+  translate: 2px -2px;
+}
+
+/* The ghost beside it, in the hero's cool accent. */
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 17px 26px;
+  border-radius: 999px;
+  border: 1px solid rgba(77, 134, 220, 0.32);
+  background: rgba(77, 134, 220, 0.06);
+  color: #8fb8ea;
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition:
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    background 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+}
+
+.secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(77, 134, 220, 0.55);
+  background: rgba(77, 134, 220, 0.11);
+  color: var(--ink);
+}
+
+.secondary:active {
+  transform: translateY(0);
+}
+
+.chat {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Note ───────────────────────────────────────────────────────────────── */
+.note {
+  margin: clamp(20px, 2.6vh, 30px) 0 0;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  translate: 0 16px;
+}
+
+/* ── Reveal ─────────────────────────────────────────────────────────────── */
+.section[data-revealed] .badge,
+.section[data-revealed] .title,
+.section[data-revealed] .body,
+.section[data-revealed] .actions,
+.section[data-revealed] .note {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out);
+}
+
+.section[data-revealed] .title { transition-delay: 0.1s; }
+.section[data-revealed] .body { transition-delay: 0.22s; }
+.section[data-revealed] .actions { transition-delay: 0.34s; }
+.section[data-revealed] .note { transition-delay: 0.46s; }
+
+@media (max-width: 560px) {
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge,
+  .title,
+  .body,
+  .actions,
+  .note {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .primary,
+  .secondary,
+  .arrow {
+    transition: none;
+  }
+
+  .primary:hover,
+  .secondary:hover {
+    transform: none;
+  }
+}

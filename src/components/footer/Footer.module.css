@@ -1,0 +1,466 @@
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+/* The page closes on the same parts it opened with: the studio mark, the glass,
+   the hairlines, and the burning rail — this time drawn across the very top of
+   the footer as a full stop. */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(64px, 9vh, 110px) 0 clamp(30px, 4vh, 46px);
+  background: var(--stage-deep);
+}
+
+/* The rail that has run through every section, one last time. */
+.rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 74, 28, 0.5) 22%,
+    rgba(255, 160, 43, 0.6) 50%,
+    rgba(255, 74, 28, 0.5) 78%,
+    transparent 100%
+  );
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 64% 46% at 50% 0%, rgba(139, 26, 26, 0.26) 0%, rgba(100, 18, 18, 0.11) 34%, transparent 76%),
+    radial-gradient(ellipse 40% 40% at 84% 20%, rgba(77, 134, 220, 0.07) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── Top: brand and link columns ────────────────────────────────────────── */
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
+  gap: clamp(36px, 5vw, 84px);
+  opacity: 0;
+  translate: 0 22px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* A proper lockup rather than a lone glyph — the footer is where the studio
+   signs its name. */
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.mark {
+  display: block;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(96, 156, 240, 0.35));
+}
+
+.wordmark {
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.lockup:hover {
+  transform: translateY(-2px);
+}
+
+.brandLine {
+  max-width: 34ch;
+  margin: 18px 0 0;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.6;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+}
+
+.assurances {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: clamp(20px, 2.6vh, 30px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.assurance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.tick {
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  color: var(--accent-amber);
+}
+
+/* ── Link columns ───────────────────────────────────────────────────────── */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 40px);
+}
+
+.columnTitle {
+  margin: 0 0 16px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.columnList {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-block;
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.4;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+  transition: color 0.3s var(--ease-out), translate 0.3s var(--ease-out);
+}
+
+.link:hover {
+  color: var(--ink);
+  translate: 3px 0;
+}
+
+/* ── Middle: trust badge and the last call to action ────────────────────── */
+.middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: clamp(24px, 3vw, 48px);
+  margin: clamp(40px, 5.5vh, 68px) 0 0;
+  padding: clamp(24px, 3vh, 36px) 0;
+  border-top: 1px solid var(--hairline-soft);
+  border-bottom: 1px solid var(--hairline-soft);
+  opacity: 0;
+  translate: 0 20px;
+}
+
+.payment {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
+  flex-wrap: wrap;
+}
+
+.paymentLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.lock {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 160, 43, 0.24);
+  background: rgba(255, 160, 43, 0.07);
+  color: var(--accent-amber);
+}
+
+.lock svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Monochrome marks in a plain row. A light plaque would have read as a
+   cut-out sitting on the page; silhouettes belong to it. */
+.marks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(14px, 1.7vw, 26px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The wide marks (PayPal, McAfee) were being squeezed by the flex row and
+   losing their last letters. */
+.marks > li {
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.mkImg {
+  display: block;
+  width: auto;
+  height: clamp(22px, 2.1vw, 29px);
+  opacity: 0.62;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.marks:hover .mkImg {
+  opacity: 0.92;
+}
+
+/* ── Closing CTA ────────────────────────────────────────────────────────── */
+.closing {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 24px);
+}
+
+.closingLead {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* The hero's hot button, one last time. */
+.closingCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--accent-flare);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  box-shadow:
+    0 0 24px rgba(255, 58, 26, 0.4),
+    0 0 60px rgba(255, 80, 30, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+.closingCta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 34px rgba(255, 58, 26, 0.55),
+    0 0 78px rgba(255, 80, 30, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.closingCta:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  width: 12px;
+  height: 12px;
+  transition: translate 0.4s var(--ease-out);
+}
+
+.closingCta:hover .arrow {
+  translate: 2px -2px;
+}
+
+/* ── Legal row ──────────────────────────────────────────────────────────── */
+/* One compact line of policy links in the lowest tier, separated by the same
+   middot the meta rails use, so Legal does not eat a whole nav column. */
+.legalRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 0;
+  margin: clamp(22px, 3vh, 34px) 0 0;
+  padding-top: clamp(18px, 2.4vh, 26px);
+  border-top: 1px solid var(--hairline-soft);
+  opacity: 0;
+  translate: 0 16px;
+}
+
+.legalLink {
+  position: relative;
+  padding: 0 14px 0 0;
+  margin-right: 14px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  transition: color 0.35s var(--ease-out);
+}
+
+.legalLink::after {
+  content: "·";
+  position: absolute;
+  right: -3px;
+  color: var(--ink-faint);
+  opacity: 0.5;
+}
+
+.legalRow > .legalLink:last-child {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.legalRow > .legalLink:last-child::after {
+  content: none;
+}
+
+.legalLink:hover {
+  color: var(--ink);
+}
+
+/* ── Bottom ─────────────────────────────────────────────────────────────── */
+.bottom {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: clamp(20px, 2.6vh, 30px) 0 0;
+  opacity: 0;
+  translate: 0 16px;
+}
+
+.copyright,
+.disclaimer {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+.disclaimer {
+  max-width: 56ch;
+  text-align: right;
+}
+
+/* ── Reveal ─────────────────────────────────────────────────────────────── */
+.footer[data-revealed] .top,
+.footer[data-revealed] .middle,
+.footer[data-revealed] .legalRow,
+.footer[data-revealed] .bottom {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out);
+}
+
+.footer[data-revealed] .middle { transition-delay: 0.12s; }
+.footer[data-revealed] .legalRow { transition-delay: 0.2s; }
+.footer[data-revealed] .bottom { transition-delay: 0.28s; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(32px, 5vh, 48px);
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 24px;
+  }
+
+  .middle {
+    justify-content: flex-start;
+  }
+
+  .disclaimer {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .payment {
+    width: 100%;
+  }
+
+  .marks {
+    gap: 14px;
+  }
+
+  .closing {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .closingCta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top,
+  .middle,
+  .bottom {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .mark,
+  .link,
+  .closingCta,
+  .arrow {
+    transition: none;
+  }
+}

@@ -1,0 +1,52 @@
+.rail {
+  position: relative;
+  animation: fade 1.1s var(--ease-out) 0.72s both;
+}
+
+.track {
+  position: relative;
+  height: 1px;
+  background: var(--hairline-soft);
+}
+
+.fill {
+  position: absolute;
+  inset: -1px auto;
+  height: 3px;
+  width: 0;
+  border-radius: 2px;
+  background: var(--accent-flare);
+  /* The bar reads as burning, not painted. */
+  box-shadow:
+    0 0 10px rgba(255, 74, 28, 0.75),
+    0 0 26px rgba(255, 122, 34, 0.35);
+  animation: burn linear forwards;
+  transform-origin: left center;
+}
+
+/* Reduced motion: hold the opening frame instead of sweeping. */
+.fill[data-static] {
+  width: 5.5%;
+  animation: none;
+}
+
+@keyframes burn {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    animation: none;
+  }
+
+  .fill {
+    width: 5.5%;
+    animation: none;
+  }
+}

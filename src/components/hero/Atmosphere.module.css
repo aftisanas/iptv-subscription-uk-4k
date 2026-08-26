@@ -1,0 +1,100 @@
+/* ── Hero atmosphere ────────────────────────────────────────────────────── */
+/* Everything behind the copy: the graded stage, the poster wall on the right
+   flank, one static cool bloom, the vignette and the grain.
+ *
+ * The figure and the five drifting smoke plates are gone. What is left paints
+ * once and never composites again — no filters, no blend-mode animation, no
+ * will-change on a full-viewport layer. The grade, the colour and the depth of
+ * the original are kept; only the cost is not. */
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stage,
+.bloom,
+.vignette,
+.grain {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── Graded stage ───────────────────────────────────────────────────────── */
+/* Near-black, lifted very slightly and cooled behind the copy column. */
+.stage {
+  background:
+    radial-gradient(
+      104% 78% at 22% 36%,
+      rgba(26, 38, 60, 0.46) 0%,
+      rgba(12, 18, 30, 0.3) 36%,
+      rgba(5, 5, 7, 0) 68%
+    ),
+    var(--stage);
+}
+
+/* ── Cool bloom ─────────────────────────────────────────────────────────── */
+/* The blue key light that used to wrap the figure, kept as the section's
+   colour signature. A single painted gradient — static, so it costs one
+   rasterisation and nothing per frame. */
+.bloom {
+  background:
+    radial-gradient(
+      46% 40% at 22% 40%,
+      rgba(77, 134, 220, 0.16) 0%,
+      rgba(77, 134, 220, 0.06) 46%,
+      transparent 76%
+    ),
+    radial-gradient(
+      38% 34% at 62% 74%,
+      rgba(255, 122, 34, 0.07) 0%,
+      transparent 72%
+    );
+}
+
+/* ── Vignette ───────────────────────────────────────────────────────────── */
+.vignette {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 16%),
+    linear-gradient(to top, rgba(2, 2, 3, 0.92) 0%, rgba(2, 2, 3, 0.3) 7%, transparent 18%),
+    radial-gradient(160% 120% at 38% 46%, transparent 64%, rgba(0, 0, 0, 0.26) 90%, rgba(0, 0, 0, 0.56) 100%);
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+/* The bloom follows the artwork: on a phone the wall is across the top, so the
+   cool key light goes there too. */
+@media (max-width: 760px) {
+  .bloom {
+    background:
+      radial-gradient(
+        70% 32% at 50% 18%,
+        rgba(77, 134, 220, 0.18) 0%,
+        rgba(77, 134, 220, 0.07) 48%,
+        transparent 78%
+      ),
+      radial-gradient(
+        60% 30% at 60% 82%,
+        rgba(255, 122, 34, 0.08) 0%,
+        transparent 72%
+      );
+  }
+
+  .vignette {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.42) 0%, transparent 14%),
+      linear-gradient(to top, rgba(2, 2, 3, 0.92) 0%, rgba(2, 2, 3, 0.3) 8%, transparent 22%);
+  }
+}
+
+/* Film grain — also the cheapest cure for banding across these wide gradients.
+   Static now: the stepped shift animation was the last per-frame cost in the
+   section and it was animating a texture nobody can see move. */
+.grain {
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+}

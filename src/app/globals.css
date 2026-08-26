@@ -1,33 +1,43 @@
 @import "tailwindcss";
 
+/* ==================================================================
+   1. Tailwind theme tokens.
+
+   The KEYS are unchanged from the pre-migration file — every existing
+   page styles itself with bg-background / text-foreground / bg-card /
+   border-border / text-muted / text-primary, so keeping the keys means
+   no utility class breaks at compile time. Only the VALUES move, from
+   the old light palette to the design's dark stage.
+   ================================================================== */
 @theme {
-  /* ── Premium vibrant palette ── */
-  --color-background: #fafbff;
-  --color-foreground: #0c0f1d;
-  --color-card: #ffffff;
-  --color-card-hover: #f5f3ff;
-  --color-border: #e0dff5;
-  --color-border-bright: #c4b5fd;
-  --color-muted: #555770;
-  --color-muted-foreground: #8b8da8;
+  /* Stage */
+  --color-background: #050507;
+  --color-foreground: #ffffff;
+  --color-card: rgba(255, 255, 255, 0.045);
+  --color-card-hover: rgba(255, 255, 255, 0.075);
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-bright: rgba(255, 255, 255, 0.18);
+  --color-muted: rgba(255, 255, 255, 0.62);
+  --color-muted-foreground: rgba(255, 255, 255, 0.42);
 
-  --color-primary: #6d28d9;
-  --color-primary-hover: #5b21b6;
-  --color-primary-glow: rgba(109, 40, 217, 0.15);
+  /* Accent — the red→amber flare carries what violet used to */
+  --color-primary: #ff2d20;
+  --color-primary-hover: #ff6a21;
+  --color-primary-glow: rgba(255, 45, 32, 0.18);
 
-  --color-accent: #0891b2;
-  --color-accent-hover: #0e7490;
-  --color-accent-glow: rgba(8, 145, 178, 0.12);
+  --color-accent: #ffa02b;
+  --color-accent-hover: #ff8a1f;
+  --color-accent-glow: rgba(255, 160, 43, 0.14);
 
-  --color-neon: #06b6d4;
-  --color-neon-glow: rgba(6, 182, 212, 0.1);
+  --color-neon: #4d86dc;
+  --color-neon-glow: rgba(77, 134, 220, 0.12);
 
-  --color-success: #059669;
-  --color-warning: #d97706;
-  --color-danger: #dc2626;
+  /* Status colours lifted for legibility on a near-black ground */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
 
-  /* Hero-specific palette — deep premium */
-  --color-hero-bg: #0f0524;
+  --color-hero-bg: #050507;
   --color-hero-card: rgba(255, 255, 255, 0.06);
   --color-hero-border: rgba(255, 255, 255, 0.08);
 
@@ -38,6 +48,163 @@
   --animate-fade-in: fade-in 0.5s ease-out;
 }
 
+/* ==================================================================
+   2. Design tokens from the landing page, verbatim.
+
+   Every value here was sampled from the reference art direction
+   (near-black stage, cool blue-white haze, red→amber accent). The
+   ported .module.css files read these directly, so nothing in
+   src/components/**.module.css needed editing during the migration.
+   ================================================================== */
+:root {
+  /* Stage */
+  --stage:            #050507;
+  --stage-deep:       #000000;
+
+  /* Ink */
+  --ink:              #ffffff;
+  --ink-strong:       rgba(255, 255, 255, 0.90);
+  --ink-muted:        rgba(255, 255, 255, 0.62);
+  --ink-soft:         rgba(255, 255, 255, 0.58);
+  --ink-faint:        rgba(255, 255, 255, 0.42);
+
+  /* Surfaces (glass) */
+  --glass:            rgba(255, 255, 255, 0.045);
+  --glass-hi:         rgba(255, 255, 255, 0.075);
+  --hairline:         rgba(255, 255, 255, 0.09);
+  --hairline-soft:    rgba(255, 255, 255, 0.07);
+
+  /* Accents */
+  --accent-red:       #ff2d20;
+  --accent-amber:     #ffa02b;
+  --accent-flare:     linear-gradient(96deg, #ff2d20 0%, #ff3b2a 28%, #ff6a21 64%, #ffa02b 100%);
+  --rim-blue:         #4d86dc;
+  --haze:             226 236 252;
+
+  /* Solid CTA */
+  --cta-face:         #f4f4f2;
+  --cta-ink:          #08080a;
+
+  /* Rhythm */
+  --gutter:           clamp(20px, 5vw, 72px);
+  --gutter-nav:       clamp(16px, 3.9vw, 56px);
+
+  /* Motion */
+  --ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout:       cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* The ported CSS Modules ask for --font-inter; next/font publishes the
+     face as --font-sans. Aliasing here means neither side had to change,
+     and var() resolves lazily so the class-scoped value still wins. */
+  --font-inter:       var(--font-sans);
+
+  color-scheme: dark;
+}
+
+/* ==================================================================
+   3. Base element rules.
+   ================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--stage-deep);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* The hero's atmosphere layers deliberately overhang the viewport.
+     This hides that overhang — it does NOT prove the page fits. The
+     360 px check is done by measuring element widths, not by looking
+     for a scrollbar. */
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* The base rule above strips underlines site-wide, which is right for
+   navigation and wrong for prose. Blog and policy body copy re-declare
+   it so contextual links stay visibly links — the internal-link plan
+   depends on them reading as links. */
+.prose-body a[href],
+article a[href]:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.prose-body a[href]:hover,
+article a[href]:not([class]):hover {
+  text-decoration-color: var(--accent-amber);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(255, 61, 34, 0.32);
+  color: #fff;
+}
+
+/* Keyboard-only focus ring — visible on the dark stage, never on mouse click. */
+:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scrollbar — retinted for the dark stage */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0b0b0f; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-red); }
+
+/* ==================================================================
+   4. Keyframes.
+   ================================================================== */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
@@ -77,41 +244,34 @@
   50% { background-position: 100% 50%; }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f5f3ff; }
-::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+/* ==================================================================
+   5. Shared utility classes.
 
-::selection { background: var(--color-primary); color: white; }
+   Four of these are still used by pages that survive the migration —
+   .glass (nav), .gradient-text (blog, contact, footer, nav),
+   .gradient-text-hero and .aurora-blob (blog, contact) — so they are
+   retinted for the dark stage rather than dropped.
+   ================================================================== */
 
-html { scroll-behavior: smooth; }
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans);
-}
-
-/* Glass effect — light (premium tint) */
+/* Glass effect — dark */
 .glass {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.045);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(196, 181, 253, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-/* Gradient text — purple to cyan */
+/* Gradient text — the red→amber flare, matching the design's accent */
 .gradient-text {
-  background: linear-gradient(135deg, #7c3aed, #6d28d9, #0891b2);
+  background: linear-gradient(96deg, #ff2d20 0%, #ff3b2a 28%, #ff6a21 64%, #ffa02b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gradient text — hero accent (vivid) */
+/* Gradient text — animated variant */
 .gradient-text-hero {
-  background: linear-gradient(135deg, #a78bfa, #c084fc, #22d3ee, #67e8f9);
+  background: linear-gradient(96deg, #ff2d20, #ff6a21, #ffa02b, #ff3b2a);
   background-size: 200% 200%;
   animation: gradient-x 6s ease infinite;
   -webkit-background-clip: text;
@@ -119,7 +279,15 @@ body {
   background-clip: text;
 }
 
-/* Particle canvas */
+/* Ambient background blobs — warm on the dark stage */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.16;
+  animation: aurora 15s ease-in-out infinite;
+}
+
 .particles-container {
   position: absolute;
   inset: 0;
@@ -127,156 +295,27 @@ body {
   pointer-events: none;
 }
 
-/* Aurora background blobs for hero */
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  animation: aurora 15s ease-in-out infinite;
-}
-
-/* Premium section backgrounds */
+/* Section backgrounds */
 .section-gradient-1 {
-  background: linear-gradient(180deg, #fafbff 0%, #f0ecff 50%, #fafbff 100%);
+  background: linear-gradient(180deg, #050507 0%, #0d0a10 50%, #050507 100%);
 }
 
 .section-gradient-2 {
-  background: linear-gradient(180deg, #fafbff 0%, #ecfeff 50%, #fafbff 100%);
+  background: linear-gradient(180deg, #050507 0%, #080b12 50%, #050507 100%);
 }
 
-/* Premium card hover */
 .premium-card {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .premium-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px -12px rgba(109, 40, 217, 0.12), 0 8px 24px -8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 20px 60px -12px rgba(255, 45, 32, 0.14), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
 }
 
-/* Subtle mesh gradient for section bg */
 .mesh-gradient {
   background-image:
-    radial-gradient(at 20% 20%, rgba(124, 58, 237, 0.06) 0px, transparent 50%),
-    radial-gradient(at 80% 20%, rgba(8, 145, 178, 0.05) 0px, transparent 50%),
-    radial-gradient(at 50% 80%, rgba(168, 85, 247, 0.04) 0px, transparent 50%);
-}
-
-/* Promo Banner Countdown */
-.countdown-block {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(139, 92, 246, 0.4);
-  border-radius: 8px;
-  padding: 6px 12px;
-  min-width: 58px;
-  text-align: center;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow:
-    0 0 14px rgba(139, 92, 246, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-@media (min-width: 640px) {
-  .countdown-block {
-    padding: 8px 14px;
-    min-width: 68px;
-  }
-}
-
-.countdown-number {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
-}
-
-@media (min-width: 640px) {
-  .countdown-number {
-    font-size: 1.875rem;
-  }
-}
-
-.countdown-label {
-  font-size: 0.55rem;
-  font-weight: 600;
-  color: rgba(196, 181, 253, 0.85);
-  letter-spacing: 0.14em;
-  margin-top: 4px;
-}
-
-@media (min-width: 640px) {
-  .countdown-label {
-    font-size: 0.6rem;
-  }
-}
-
-.countdown-separator {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: rgba(139, 92, 246, 0.85);
-  padding: 0 2px;
-  padding-top: 6px;
-  text-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
-}
-
-@media (min-width: 640px) {
-  .countdown-separator {
-    font-size: 1.5rem;
-    padding: 0 3px;
-    padding-top: 8px;
-  }
-}
-
-.countdown-tick {
-  animation: countdownTick 1s ease-out;
-}
-
-@keyframes countdownTick {
-  0% { transform: scale(1.08); text-shadow: 0 0 28px rgba(192, 132, 252, 1); }
-  100% { transform: scale(1); text-shadow: 0 0 20px rgba(139, 92, 246, 0.8); }
-}
-
-.promo-banner {
-  animation: bannerGlow 3s ease-in-out infinite;
-}
-
-@keyframes bannerGlow {
-  0%, 100% {
-    box-shadow:
-      0 0 20px rgba(139, 92, 246, 0.3),
-      0 0 40px rgba(59, 130, 246, 0.1);
-  }
-  50% {
-    box-shadow:
-      0 0 30px rgba(139, 92, 246, 0.5),
-      0 0 60px rgba(59, 130, 246, 0.22);
-  }
-}
-
-.promo-banner-shimmer {
-  animation: bannerShimmer 4s linear infinite;
-}
-
-@keyframes bannerShimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-/* Pricing badge shimmer */
-.badge-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.badge-shimmer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shimmer 3s linear infinite;
-  background-size: 200% 100%;
+    radial-gradient(at 20% 20%, rgba(255, 45, 32, 0.07) 0px, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(255, 160, 43, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(77, 134, 220, 0.05) 0px, transparent 50%);
 }

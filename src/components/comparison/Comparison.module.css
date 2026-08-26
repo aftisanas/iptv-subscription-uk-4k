@@ -1,0 +1,300 @@
+/* ── Standard vs Premium ────────────────────────────────────────────────── */
+/* Tabular data, so it is a real table — but built from the site's own parts:
+   hairline rows instead of ruled boxes, meta-rail column heads, and the
+   burning rail marking the upgrade column exactly as it marks the featured
+   plan card. No filled header bar, no outlined grid. */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(88px, 12vh, 160px) 0 clamp(92px, 12.5vh, 168px);
+  background: var(--stage-deep);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(139, 26, 26, 0.28) 0%, rgba(100, 18, 18, 0.14) 32%, transparent 74%),
+    radial-gradient(ellipse 40% 44% at 78% 58%, rgba(255, 160, 43, 0.07) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+
+/* ── Head ───────────────────────────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+.eyebrowDash {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-red);
+  box-shadow: 0 0 10px rgba(255, 45, 32, 0.55);
+}
+
+.title {
+  margin: clamp(14px, 1.8vh, 22px) 0 clamp(34px, 5vh, 60px);
+  font-size: clamp(34px, 4.4vw, 68px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(177deg, #ffffff 0%, #ffffff 36%, rgba(255, 255, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  translate: 0 28px;
+}
+
+.flare {
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Table ──────────────────────────────────────────────────────────────── */
+.tableWrap {
+  opacity: 0;
+  translate: 0 26px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: left;
+}
+
+.headFeature,
+.headTier {
+  padding: 0 clamp(12px, 1.4vw, 20px) 16px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  vertical-align: bottom;
+}
+
+.headFeature {
+  width: 44%;
+  padding-left: 0;
+}
+
+.headTier {
+  width: 28%;
+  text-align: center;
+}
+
+/* ── The premium column ─────────────────────────────────────────────────── */
+/* One warm channel running the height of the table, capped by the same burning
+   rail the featured plan card wears. */
+.premium {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 160, 43, 0.055) 0%, rgba(255, 160, 43, 0.018) 60%, rgba(255, 160, 43, 0.008) 100%);
+}
+
+.headTier.premium {
+  padding-top: 16px;
+  border-radius: 14px 14px 0 0;
+  color: var(--accent-amber);
+}
+
+.headTier.premium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(96deg, #ff6a21 0%, #ffa02b 55%, #ffcf6b 100%);
+  box-shadow:
+    0 0 10px rgba(255, 160, 43, 0.7),
+    0 0 26px rgba(255, 190, 90, 0.32);
+}
+
+.premiumLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 160, 43, 0.3);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accent-amber);
+}
+
+.row:last-child .premium {
+  border-radius: 0 0 14px 14px;
+}
+
+/* ── Rows ───────────────────────────────────────────────────────────────── */
+.row {
+  opacity: 0;
+  translate: 0 12px;
+}
+
+.feature,
+.cell {
+  padding: clamp(11px, 1.15vw, 15px) clamp(12px, 1.4vw, 20px);
+  border-top: 1px solid var(--hairline-soft);
+  font-size: clamp(12.5px, 0.98vw, 14.5px);
+  line-height: 1.45;
+  vertical-align: middle;
+}
+
+.feature {
+  padding-left: 0;
+  font-weight: 400;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+}
+
+/* Rows where the tiers actually differ get the brighter label — the scan line
+   for someone deciding whether to upgrade. */
+.row[data-differs] .feature {
+  color: var(--ink-strong);
+  font-weight: 500;
+}
+
+.cell {
+  text-align: center;
+}
+
+.value {
+  color: var(--ink-strong);
+  font-weight: 500;
+}
+
+.valueHot {
+  color: #ffce93;
+  font-weight: 600;
+}
+
+.tick {
+  width: 15px;
+  height: 15px;
+  color: var(--rim-blue);
+}
+
+.cell.premium .tick {
+  color: var(--accent-amber);
+}
+
+.dash {
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background: var(--hairline);
+  vertical-align: middle;
+}
+
+/* ── Footnote ───────────────────────────────────────────────────────────── */
+.footnote {
+  margin: clamp(24px, 3.4vh, 38px) auto 0;
+  max-width: 620px;
+  font-size: clamp(12px, 0.95vw, 14px);
+  line-height: 1.55;
+  color: var(--ink-faint);
+  opacity: 0;
+  translate: 0 16px;
+}
+
+/* ── Reveal ─────────────────────────────────────────────────────────────── */
+.section[data-revealed] .eyebrow,
+.section[data-revealed] .title,
+.section[data-revealed] .tableWrap,
+.section[data-revealed] .footnote {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out);
+}
+
+.section[data-revealed] .title { transition-delay: 0.1s; }
+.section[data-revealed] .tableWrap { transition-delay: 0.2s; }
+.section[data-revealed] .footnote { transition-delay: 0.34s; }
+
+.section[data-revealed] .row {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.5s var(--ease-out),
+    translate 0.5s var(--ease-out);
+  transition-delay: calc(0.26s + var(--i) * 0.028s);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .headFeature { width: 42%; }
+  .headTier { width: 29%; }
+
+  .feature,
+  .cell {
+    padding: 11px 8px;
+    font-size: 12.5px;
+  }
+
+  .feature { padding-left: 0; }
+
+  .headFeature,
+  .headTier {
+    padding-inline: 8px;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+  }
+
+  .headFeature { padding-left: 0; }
+
+  .badge { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .title,
+  .tableWrap,
+  .footnote,
+  .row {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+}

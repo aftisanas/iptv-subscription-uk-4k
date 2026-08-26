@@ -1,0 +1,517 @@
+/* ── Long-form overview ─────────────────────────────────────────────────── */
+/* The densest copy on the page. Set as prose it reads as a wall, so it is
+   carried by the same parts as everything else: numbered glass cards, hairline
+   rows, and the hero's rail turned upright for the steps. */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(92px, 12.5vh, 168px) 0 clamp(96px, 13vh, 175px);
+  background: var(--stage-deep);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 72% 40% at 50% 0%, rgba(139, 26, 26, 0.26) 0%, rgba(100, 18, 18, 0.12) 34%, transparent 74%),
+    radial-gradient(ellipse 44% 40% at 16% 44%, rgba(77, 134, 220, 0.1) 0%, transparent 74%),
+    radial-gradient(ellipse 44% 40% at 86% 74%, rgba(255, 160, 43, 0.07) 0%, transparent 74%);
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.webp");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── Head ───────────────────────────────────────────────────────────────── */
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+.dash {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-red);
+  box-shadow: 0 0 10px rgba(255, 45, 32, 0.55);
+}
+
+.title {
+  margin: clamp(14px, 1.8vh, 22px) 0 0;
+  max-width: 20ch;
+  text-wrap: balance;
+  font-size: clamp(32px, 4.2vw, 64px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(177deg, #ffffff 0%, #ffffff 36%, rgba(255, 255, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  translate: 0 28px;
+}
+
+.flare {
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro {
+  max-width: 760px;
+  margin: clamp(20px, 2.6vh, 30px) 0 0;
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.7;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+  opacity: 0;
+  translate: 0 18px;
+}
+
+/* ── Block labels ───────────────────────────────────────────────────────── */
+/* The section has three sub-headings; they are meta-rail labels rather than
+   competing headlines, so the one title above keeps the hierarchy. */
+.blockLabel {
+  margin: clamp(52px, 7vh, 86px) 0 clamp(22px, 3vh, 34px);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+  opacity: 0;
+  translate: 0 16px;
+}
+
+/* ── Pillars ────────────────────────────────────────────────────────────── */
+/* Five cards on a three-up grid leave a ragged pair on the second row, so the
+   grid runs on sixths: three cards of two, then two of three. Both rows fill. */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(14px, 1.5vw, 22px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pillar:nth-child(-n + 3) {
+  grid-column: span 2;
+}
+
+.pillar:nth-child(n + 4) {
+  grid-column: span 3;
+}
+
+.pillar {
+  position: relative;
+  padding: clamp(24px, 2.2vw, 32px) clamp(22px, 2vw, 28px);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 24px 60px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.7s var(--ease-out),
+    translate 0.7s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.pillar:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 160, 43, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    0 28px 66px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(255, 160, 43, 0.09);
+}
+
+.index {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-variant-numeric: tabular-nums;
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pillarTitle {
+  margin: 12px 0 0;
+  font-size: clamp(16px, 1.28vw, 19px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.pillarBody {
+  margin: 10px 0 0;
+  font-size: clamp(13px, 0.98vw, 14.5px);
+  line-height: 1.62;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+}
+
+/* ── Plans + steps ──────────────────────────────────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: clamp(16px, 1.8vw, 26px);
+  margin: clamp(20px, 2.6vh, 32px) 0 0;
+}
+
+.panel {
+  padding: clamp(26px, 2.4vw, 36px) clamp(22px, 2.2vw, 32px);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 24px 60px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  translate: 0 24px;
+}
+
+.panelLabel {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.panelLede {
+  margin: 14px 0 0;
+  font-size: clamp(13px, 0.98vw, 14.5px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ── Plan rows ──────────────────────────────────────────────────────────── */
+/* A leader line rather than a table: this is a summary, and the real pricing
+   section is the one that has to be scanned. */
+.planRows {
+  margin: clamp(16px, 2vw, 22px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: clamp(10px, 1vw, 13px) 0;
+}
+
+.planRow + .planRow {
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.planTerm {
+  font-size: clamp(13.5px, 1.02vw, 15px);
+  font-weight: 500;
+  color: var(--ink-strong);
+  white-space: nowrap;
+}
+
+.planDots {
+  flex: 1 1 auto;
+  height: 1px;
+  min-width: 12px;
+  background: linear-gradient(90deg, var(--hairline) 0%, rgba(255, 255, 255, 0.03) 100%);
+}
+
+.planPrice {
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.includesLabel {
+  margin: clamp(20px, 2.2vw, 26px) 0 0;
+  padding-top: clamp(16px, 1.6vw, 20px);
+  border-top: 1px solid var(--hairline-soft);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 7px 13px;
+  border: 1px solid var(--hairline-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.028);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: -0.003em;
+  color: var(--ink-soft);
+}
+
+/* ── Steps ──────────────────────────────────────────────────────────────── */
+.steps {
+  position: relative;
+  margin: clamp(18px, 2.2vw, 26px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One hairline threading the nodes — the hero's rail, stood upright. */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 15px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 122, 34, 0.5) 0%,
+    var(--hairline) 40%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+}
+
+.step {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 0 0 clamp(18px, 2vw, 24px);
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 160, 43, 0.32);
+  background: rgba(18, 12, 8, 0.96);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-amber);
+}
+
+.stepTitle {
+  margin: 5px 0 0;
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.stepBody {
+  margin: 5px 0 0;
+  font-size: clamp(12.5px, 0.95vw, 14px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ── Closing ────────────────────────────────────────────────────────────── */
+.closing {
+  max-width: 780px;
+  margin: clamp(50px, 6.5vh, 80px) auto 0;
+  text-align: center;
+  opacity: 0;
+  translate: 0 22px;
+}
+
+.closingTitle {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.032em;
+  background-image: linear-gradient(177deg, #ffffff 0%, #ffffff 40%, rgba(255, 255, 255, 0.78) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.closingBody {
+  margin: 16px 0 0;
+  font-size: clamp(13.5px, 1.05vw, 16px);
+  line-height: 1.7;
+  letter-spacing: -0.004em;
+  color: var(--ink-soft);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: clamp(30px, 4vh, 44px) 0 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background-image: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kickerDash {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-amber);
+  box-shadow: 0 0 10px rgba(255, 160, 43, 0.6);
+}
+
+/* ── Reveal ─────────────────────────────────────────────────────────────── */
+.section[data-revealed] .eyebrow,
+.section[data-revealed] .title,
+.section[data-revealed] .intro,
+.section[data-revealed] .blockLabel,
+.section[data-revealed] .panel,
+.section[data-revealed] .closing {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out);
+}
+
+.section[data-revealed] .title { transition-delay: 0.08s; }
+.section[data-revealed] .intro { transition-delay: 0.18s; }
+.section[data-revealed] .blockLabel { transition-delay: 0.26s; }
+.section[data-revealed] .panel:nth-child(2) { transition-delay: 0.12s; }
+
+.section[data-revealed] .pillar {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: calc(0.3s + var(--i) * 0.07s);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pillar:nth-child(-n + 3),
+  .pillar:nth-child(n + 4) {
+    grid-column: span 1;
+  }
+
+  /* An odd card would sit alone at half width; the last one takes the row. */
+  .pillar:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .pillars {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pillar:nth-child(-n + 3),
+  .pillar:nth-child(n + 4),
+  .pillar:last-child {
+    grid-column: span 1;
+  }
+
+  .pillar {
+    padding: 22px 20px;
+  }
+
+  .panel {
+    padding: 24px 20px;
+  }
+
+  .chip {
+    font-size: 11px;
+    padding: 6px 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .title,
+  .intro,
+  .blockLabel,
+  .pillar,
+  .panel,
+  .closing {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .pillar:hover {
+    transform: none;
+  }
+}
