@@ -1,0 +1,694 @@
+/* ------------------------------------------------------------------
+   Checkout.
+
+   Structure follows the layout reference (two columns; order summary +
+   promo on the left, one Billing Details card on the right). Every
+   colour, radius, easing and type ramp is this site's own — the tokens
+   from globals.css and the card idiom from PlanCard.module.css.
+   ------------------------------------------------------------------ */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(96px, 12vh, 132px) 0 clamp(64px, 9vh, 110px);
+  background: var(--stage-deep);
+}
+
+/* A single warm bloom behind the cards, echoing the hero's atmosphere
+   without repeating its cost. */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 520px;
+  background:
+    radial-gradient(60% 100% at 20% 0%, rgba(255, 45, 32, 0.13), transparent 70%),
+    radial-gradient(50% 100% at 85% 10%, rgba(255, 160, 43, 0.09), transparent 70%);
+  pointer-events: none;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── Back link ──────────────────────────────────────────────────────── */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: clamp(18px, 2.4vh, 28px);
+  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: color 0.35s var(--ease-out);
+}
+
+.back:hover {
+  color: var(--ink);
+}
+
+.backIcon {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Grid ───────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: clamp(16px, 1.6vw, 24px);
+  align-items: start;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.4vw, 20px);
+  position: sticky;
+  top: clamp(88px, 11vh, 116px);
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────── */
+.card,
+.main {
+  padding: clamp(20px, 2vw, 30px) clamp(18px, 1.9vw, 28px);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.cardTitle {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ── Order summary ──────────────────────────────────────────────────── */
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+}
+
+.line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.lineLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-strong);
+}
+
+.lineValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.lineSub {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  letter-spacing: 0.005em;
+}
+
+.included {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+}
+
+.totalRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.totalLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.totalValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  background: var(--accent-flare);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* The per-month line inherits the gradient clip, which would render it
+   invisible — put the ink back. */
+.totalValue .lineSub {
+  -webkit-text-fill-color: var(--ink-faint);
+}
+
+.totalNote {
+  margin: 12px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+/* ── Promo ──────────────────────────────────────────────────────────── */
+.promoHelp {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.promoRow {
+  display: flex;
+  gap: 8px;
+}
+
+.promoInput {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13.5px;
+  transition: border-color 0.35s var(--ease-out);
+}
+
+.promoInput::placeholder {
+  color: var(--ink-faint);
+}
+
+.promoInput:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.promoApply {
+  flex-shrink: 0;
+  padding: 11px 18px;
+  border-radius: 10px;
+  background: var(--accent-flare);
+  color: var(--cta-ink);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: filter 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+
+.promoApply:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.promoNotice {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--accent-amber);
+}
+
+/* ── Add-on rows ────────────────────────────────────────────────────── */
+.addon {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 18px);
+  padding: clamp(13px, 1.3vw, 17px) clamp(13px, 1.4vw, 18px);
+  margin-bottom: 12px;
+  border: 1px solid var(--hairline-soft);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.addon[data-locked] {
+  border-color: rgba(255, 160, 43, 0.22);
+  background: rgba(255, 160, 43, 0.05);
+}
+
+.addonBody {
+  min-width: 0;
+}
+
+.addonTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.addonHelp {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.badge {
+  padding: 3px 7px;
+  border-radius: 5px;
+  background: var(--accent-amber);
+  color: #1a1206;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.addonPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+}
+
+.addonAmount {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.addonUnit {
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* ── Stepper ────────────────────────────────────────────────────────── */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.stepBtn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1;
+  transition:
+    border-color 0.3s var(--ease-out),
+    background 0.3s var(--ease-out),
+    opacity 0.3s var(--ease-out);
+}
+
+.stepBtn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stepBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.stepValue {
+  min-width: 28px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Toggle ─────────────────────────────────────────────────────────── */
+.toggle {
+  position: relative;
+  width: 46px;
+  height: 26px;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--hairline);
+  transition: background 0.35s var(--ease-out);
+}
+
+.toggle[data-on] {
+  background: var(--accent-flare);
+  border-color: transparent;
+}
+
+.toggle:disabled {
+  cursor: default;
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  translate: 0 -50%;
+  transition: left 0.35s var(--ease-out);
+}
+
+.toggle[data-on] .toggleKnob {
+  left: 23px;
+}
+
+/* ── Fields ─────────────────────────────────────────────────────────── */
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: clamp(18px, 2vw, 24px);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.label {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.label span {
+  color: var(--accent-red);
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  transition: border-color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+.input[aria-invalid="true"] {
+  border-color: rgba(255, 45, 32, 0.65);
+}
+
+.hint {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+.fieldError {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #ff8f84;
+}
+
+/* ── Primary action ─────────────────────────────────────────────────── */
+.primary {
+  width: 100%;
+  margin-top: clamp(20px, 2.2vw, 26px);
+  padding: 16px 22px;
+  border-radius: 12px;
+  background: var(--accent-flare);
+  color: var(--cta-ink);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 10px 30px rgba(255, 61, 34, 0.24);
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    filter 0.4s var(--ease-out);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 40px rgba(255, 61, 34, 0.32);
+}
+
+.primary:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* WhatsApp path keeps the same silhouette so the page does not jump when
+   the availability probe resolves — only the hue changes. */
+.primaryWa {
+  background: linear-gradient(96deg, #1faa55 0%, #25d366 100%);
+  color: #04210f;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.22);
+}
+
+.primaryWa:hover:not(:disabled) {
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.3);
+}
+
+.actionNote {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.formError {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #ff8f84;
+  text-align: center;
+}
+
+/* ── Trust row ──────────────────────────────────────────────────────── */
+.trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: clamp(20px, 2.2vw, 26px) 0 0;
+  padding: 16px 12px;
+  list-style: none;
+  border: 1px solid var(--hairline-soft);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+.trustIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent-amber);
+}
+
+.trustSub {
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink-faint);
+}
+
+/* ── Banner ─────────────────────────────────────────────────────────── */
+.banner {
+  margin: 10px 0 0;
+  padding: 12px;
+  border-radius: 11px;
+  background: rgba(255, 160, 43, 0.09);
+  border: 1px solid rgba(255, 160, 43, 0.18);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.banner span {
+  color: var(--accent-amber);
+}
+
+/* ── Payment marks ──────────────────────────────────────────────────── */
+.marks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mark img {
+  width: auto;
+  height: 26px;
+  opacity: 0.72;
+  transition: opacity 0.35s var(--ease-out);
+}
+
+.mark img:hover {
+  opacity: 1;
+}
+
+.footNote {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--ink-faint);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Summary first on mobile, as the layout specifies. */
+  .aside {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .addon {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 10px;
+  }
+
+  /* Price drops under the copy rather than squeezing it to nothing. */
+  .addonPrice {
+    grid-column: 2;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .trust {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .trustItem {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .trustSub {
+    margin-left: auto;
+    text-align: right;
+  }
+}
+
+@media (max-width: 420px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary,
+  .promoApply,
+  .stepBtn,
+  .toggle,
+  .toggleKnob,
+  .mark img {
+    transition: none;
+  }
+
+  .primary:hover:not(:disabled),
+  .promoApply:hover {
+    transform: none;
+  }
+}

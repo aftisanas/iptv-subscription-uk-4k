@@ -77,7 +77,7 @@ export const FAQ: FaqItem[] = [
     id: "tiers",
     question: "What is the difference between Standard and Premium?",
     answer:
-      "The television is identical — same channels, same films, same 4K, same guarantee. Premium simply includes the Secure Proxy and a sixth simultaneous screen, priced at exactly what those two add-ons cost separately. If you do not need either, Standard is the whole service.",
+      "The television is identical — same channels, same films, same 4K, same guarantee. Premium adds the Secure Proxy and a sixth simultaneous screen, and bundles them for less than the two cost added to Standard separately: £3.99 less on the 3-month term, rising to £60.99 less on the 24-month. If you need neither, Standard is the whole service and nothing is missing from it.",
   },
   {
     id: "catchup",

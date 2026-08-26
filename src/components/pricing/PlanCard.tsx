@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import type { Feature, Plan, TierId } from "@/data/pricing";
 import { PRICING } from "@/data/pricing";
 import styles from "./PlanCard.module.css";
@@ -28,6 +31,8 @@ type Props = {
 };
 
 export default function PlanCard({ plan, features, tier, index }: Props) {
+  const router = useRouter();
+
   return (
     <article
       className={styles.card}
@@ -61,9 +66,16 @@ export default function PlanCard({ plan, features, tier, index }: Props) {
         <span className={styles.railFill} style={{ width: `${plan.savePct}%` }} />
       </div>
 
-      <a className={styles.cta} href="#">
+      {/* router.push, not an <a href>. Two reasons: /checkout is noindex, so a
+          crawlable link into it is pointless; and this keeps the internal link
+          graph exactly as Phase F measured it. */}
+      <button
+        type="button"
+        className={styles.cta}
+        onClick={() => router.push(`/checkout?plan=${plan.id}`)}
+      >
         {plan.cta}
-      </a>
+      </button>
 
       <p className={styles.includedLabel}>{PRICING.includedLabel}</p>
 

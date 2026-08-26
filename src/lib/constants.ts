@@ -8,32 +8,49 @@ export const WHATSAPP_NUMBER = "447878757831";
 export const WHATSAPP_DISPLAY = "+44 7878 757831";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
-// Fallback only — extra-connection pricing is per plan
-// (`PRICING_PLANS[].extraConnectionPrice`) because the add-on covers the whole
-// term. Used when no plan is in context.
 /**
- * SUPERSEDED by the Premium tier notes in src/data/pricing.ts, which is what the page actually
- * renders. Kept because the corrected figures live here too, but nothing
- * imports it any more: editing this array changes nothing on the site.
- * Change src/data/pricing.ts instead, or delete this once you are sure.
+ * Identifies this site to the shared checkout hub. The hub matches orders to a
+ * Shopify store by slug.
+ *
+ * ⚠️ The hub must have this slug registered. If it does not, the availability
+ * probe returns not-available (or 404s) and every order takes the WhatsApp
+ * path. That degradation is graceful and safe to ship — but it is silent, so
+ * it has to be checked deliberately rather than noticed later.
+ */
+export const SITE_SLUG = "iptv-subscription-uk-4k";
+
+/**
+ * Shared checkout hub. Override per environment with
+ * NEXT_PUBLIC_CHECKOUT_HUB_URL; the default matches the sister sites.
+ */
+export const CHECKOUT_HUB_URL =
+  process.env.NEXT_PUBLIC_CHECKOUT_HUB_URL ?? "https://checkout.british-iptv-4k.com";
+
+/**
+ * Fallback only. Real extra-connection pricing is per plan and per tier —
+ * `Plan.extraConnectionPrice` in src/data/pricing.ts — because the add-on
+ * covers the whole term, and Premium's rate is Standard's + £10. This constant
+ * is the last resort when no plan is in context.
  */
 export const EXTRA_CONNECTION_PRICE = 7.25;
 export const EXTRA_CONNECTIONS_MAX = 5;
 
-/**
- * SUPERSEDED. Nothing imports this — the checkout copy moved into the
- * ported components. Editing it changes nothing on the site.
- */
 export const CHECKOUT_COPY = {
-  extraConnectionsLabel: "Additional Connections",
-  extraConnectionsHelp:
-    "Add extra simultaneous streams for other rooms or family members.",
-  extraConnectionsPriceLabel: (price: number) =>
-    `+£${price.toFixed(2)} per extra connection, for the full term`,
-  buttonLabelPrefix: "Order via WhatsApp",
-  buttonSubtitle:
-    "You'll be redirected to WhatsApp to confirm the order and receive payment details.",
-  footerNote: "Secure ordering via WhatsApp — no card details on this page.",
+  extraConnectionsLabel: "Additional connections",
+  extraConnectionsHelp: "One more device streaming at the same time.",
+  proxyLabel: "Secure Proxy",
+  proxyHelp:
+    "An encrypted route for shared, student or public networks. Optional — a private home line rarely needs it.",
+  proxyIncludedHelp:
+    "Already included in Premium. You are not charged for it again.",
+  buyNowLabel: "Complete order",
+  whatsappLabel: "Complete order on WhatsApp",
+  buttonSubtitleShopify:
+    "You will be taken to our secure payment page to finish the order.",
+  buttonSubtitleWhatsapp:
+    "Opens WhatsApp with your order filled in. Payment details are sent there — never entered on this page.",
+  footerNote:
+    "No card details are entered on this site. One payment, for the term you chose — nothing renews.",
 } as const;
 
 /**

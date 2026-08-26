@@ -191,6 +191,7 @@
 /* The hero navbar's pill, at card width. */
 .cta {
   display: block;
+  width: 100%;
   margin: clamp(18px, 1.9vw, 24px) 0 0;
   padding: 14px 18px;
   border-radius: 50px;
