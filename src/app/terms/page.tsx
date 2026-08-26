@@ -51,12 +51,13 @@ export default function TermsPage() {
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">3. Subscriptions & Payments</h2>
-            <p>Subscriptions are billed according to the plan selected at the time of purchase. All prices are displayed in British Pounds (GBP). We offer monthly, quarterly, and annual billing cycles. Payment is due at the start of each billing period.</p>
+            <p>A subscription is a single payment for a fixed term — 3, 6, 12 or 24 months — chosen at the time of purchase. All prices are displayed in British Pounds (GBP). Payment is arranged over WhatsApp and taken once. No card number or payment credential is entered on this website or stored by us, and there is no recurring billing of any kind.</p>
+            <p className="mt-3">Your access runs for the term you bought and ends when that term expires. <strong className="text-foreground">It does not renew automatically</strong>, no further payment is ever taken, and there is no cancellation step to remember — if you want another term, you buy one deliberately.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">4. Refund Policy</h2>
-            <p>We offer a 30-day money-back guarantee on all new subscriptions. If you are not satisfied with our service within the first 30 days, contact us for a full refund. Refunds are processed within 5–10 business days.</p>
+            <p>We offer a 30-day money-back guarantee on your first purchase of a subscription term. If you are not satisfied with our service within the first 30 days, contact us for a full refund. Requests are processed within 24–48 hours of receipt, and the money may take a further 5–10 business days to appear in your account depending on the payment method used.</p>
           </section>
 
           <section>

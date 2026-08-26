@@ -96,7 +96,7 @@ export default function ContactContent() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-muted leading-relaxed prose-body"
           >
-            The UK-based IPTV Subscription UK 4K support team is available 24/7 via live chat, email and WhatsApp — a named British team with deep knowledge of the UK IPTV market. Average first response: under four minutes. If your question is about what a term includes, you can{" "}
+            Support runs on WhatsApp and email, and the same route handles setup questions, faults and refund requests — including before you have bought anything, which is the cheapest way to find out whether we answer. Messages are answered by the team that publishes this site, under the company name rather than an individual byline. If your question is about what a term includes, you can{" "}
             <Link href="/" className="text-accent hover:text-accent-hover underline-offset-2">
               view plans
             </Link>{" "}

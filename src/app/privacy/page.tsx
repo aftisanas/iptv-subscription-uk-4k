@@ -41,17 +41,18 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">1. Information We Collect</h2>
-            <p>We collect information you provide directly, including your name, email address, and payment information when you subscribe to our service. We also collect usage data such as device information, IP addresses, and viewing preferences to improve our service.</p>
+            <p>We collect what you send us directly: your email address, and the content of your WhatsApp or email messages when you contact us or buy a subscription. Payment is arranged over WhatsApp through your own payment provider — <strong className="text-foreground">no card number or payment credential is entered on this website, and none is stored by us</strong>.</p>
+            <p className="mt-3">This website runs no analytics, advertising or tracking scripts. We do not build a profile of your browsing, and we do not collect viewing preferences through this site.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">2. How We Use Your Information</h2>
-            <p>Your information is used to provide and maintain our IPTV service, process payments, send service-related communications, provide customer support, and improve user experience. We do not sell your personal data to third parties.</p>
+            <p>Your information is used to activate your subscription, answer enquiries, provide support and handle refund requests. We do not sell your personal data to third parties, and we do not use it for advertising or profiling.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">3. Data Protection</h2>
-            <p>We implement industry-standard security measures to protect your personal information, including SSL encryption for all data transmissions and secure storage of payment details. We comply with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+            <p>This site is served over HTTPS. Because no payment is taken on the website, there is no card data for us to hold or to lose. What we do hold — your email address and your correspondence with us — is kept only as long as it is needed to support your subscription and to meet our record-keeping obligations. We comply with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
           </section>
 
           <section>
@@ -61,7 +62,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">5. Cookies</h2>
-            <p>Our website uses essential cookies to ensure functionality and analytics cookies to understand how visitors interact with our site. You can manage cookie preferences through your browser settings.</p>
+            <p>This website sets no analytics, advertising or tracking cookies. Any cookie present is strictly necessary for the page to work. Because we do not track visitors, there is no profile to opt out of — though you can clear or block cookies through your browser settings at any time.</p>
           </section>
 
           <section>
