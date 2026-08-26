@@ -97,7 +97,11 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <p className={styles.sheetLabel}>{C.rail.left}</p>
+        {/* The brand, not HERO_CONTENT.rail.left. That rail is the hero's own
+            category label; now the header renders on all 16 routes it would put
+            "UK IPTV subscriptions" in the mobile menu of every blog and policy
+            page — chrome competing with the money page for its own flag term. */}
+        <p className={styles.sheetLabel}>{C.brand.name}</p>
 
         <nav className={styles.sheetNav} aria-label="Primary, mobile">
           {C.nav.links.map(({ label, href }) => (
