@@ -214,11 +214,24 @@ export function findPlanById(id: string | null | undefined): PlanWithTier | null
 
 /**
  * The order name sent to the checkout hub and shown to the customer.
- * Identical to the Product offer names in the homepage JSON-LD, so a hub
- * order, a rich result and the page all say the same thing.
+ *
+ * MUST stay a bare term — "3 Months", not "3 Months — Standard". The hub keys
+ * its Shopify products off this exact string, and every sister site on the
+ * hub (fast-iptv, cheap-iptv, best-iptv-uk-subscription, buy-iptv-subscription)
+ * sends the bare term. Appending the tier made /api/checkout fail to match a
+ * product, so it answered storesUnavailable and the checkout fell back to
+ * WhatsApp *after* the buyer had already clicked Buy Now.
+ *
+ * That failure is invisible from /api/availability, which ignores planName and
+ * answers on the slug alone — the Buy Now button renders regardless, and the
+ * mismatch only surfaces on click.
+ *
+ * Dropping the tier is safe while VISIBLE_TIERS is Standard-only: findPlanById
+ * resolves against VISIBLE_TIERS, so no other tier can reach checkout. Selling
+ * a second tier means teaching the hub those names FIRST, then changing this.
  */
-export function planOrderName({ plan, tier }: PlanWithTier): string {
-  return `${plan.term} — ${tier.label}`;
+export function planOrderName({ plan }: PlanWithTier): string {
+  return plan.term;
 }
 
 /**
