@@ -54,7 +54,7 @@ export const REVIEWS: Review[] = [
     id: "support",
     image: "/reviews/review-3.webp",
     w: 1080,
-    h: 2340,
+    h: 2082,
     label: "A named UK mailbox and WhatsApp",
     caption: "Setup help, troubleshooting and refunds all run through the same channel, 24/7.",
   },
