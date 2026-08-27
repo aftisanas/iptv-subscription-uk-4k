@@ -199,6 +199,16 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
 
       // Store was claimed between page load and click — switch the UI rather
       // than redirecting somewhere unexpected.
+      logDiversion({
+        planName: orderName,
+        email: trimmedEmail,
+        name,
+        phone: trimmedPhone,
+        proxyOn,
+        extraConnections,
+        total,
+        reason: "STORE_CLAIMED_MIDFLIGHT",
+      });
       setAvailability({
         state: "unavailable",
         whatsappUrl: response.whatsappUrl || LOCAL_WHATSAPP_URL,
@@ -208,6 +218,10 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
       // Hub down or unreachable. Degrade to WhatsApp on our own number rather
       // than trapping the buyer behind an error.
       console.error("[checkout] callCheckoutHub failed", err);
+      // No diversion log here, matching the sister project. We only reach this
+      // branch because the hub itself is unreachable — a POST to /api/diversion
+      // on that same hub would fail too, and labelling an outage as a claimed
+      // store would put a wrong reason in the data.
       setAvailability({ state: "unavailable", whatsappUrl: LOCAL_WHATSAPP_URL });
       setSubmitting(false);
     }
@@ -215,6 +229,17 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
 
   const handleWhatsappClick = () => {
     if (availability.state !== "unavailable") return;
+
+    logDiversion({
+      planName: orderName,
+      email: trimmedEmail,
+      name,
+      phone: trimmedPhone,
+      proxyOn,
+      extraConnections,
+      total,
+      reason: "NO_STORE_AVAILABLE",
+    });
 
     const message = buildWhatsappMessage({
       planName: orderName,
@@ -489,6 +514,7 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
                   label="First name"
                   value={firstName}
                   onChange={setFirstName}
+                  onBlur={() => setTouched(true)}
                   autoComplete="given-name"
                   invalid={showErrors && !nameValid}
                 />
@@ -497,6 +523,7 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
                   label="Last name"
                   value={lastName}
                   onChange={setLastName}
+                  onBlur={() => setTouched(true)}
                   autoComplete="family-name"
                   invalid={showErrors && !nameValid}
                 />
@@ -508,6 +535,7 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
                 type="tel"
                 value={phone}
                 onChange={setPhone}
+                onBlur={() => setTouched(true)}
                 autoComplete="tel"
                 invalid={showErrors && !phoneValid}
                 hint="So we can reach you on WhatsApp if there is a problem with delivery."
@@ -520,6 +548,7 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
                 type="email"
                 value={email}
                 onChange={setEmail}
+                onBlur={() => setTouched(true)}
                 autoComplete="email"
                 invalid={showErrors && !emailValid}
                 error={
@@ -536,7 +565,7 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
                 type="button"
                 className={styles.primary}
                 onClick={handleBuyNow}
-                disabled={submitting}
+                disabled={submitting || !formValid}
               >
                 {submitting ? "Working…" : `${CHECKOUT_COPY.buyNowLabel} · ${money(total)}`}
               </button>
@@ -637,6 +666,7 @@ function Field({
   label,
   value,
   onChange,
+  onBlur,
   type = "text",
   autoComplete,
   invalid,
@@ -647,6 +677,7 @@ function Field({
   label: string;
   value: string;
   onChange: (v: string) => void;
+  onBlur?: () => void;
   type?: string;
   autoComplete?: string;
   invalid?: boolean;
@@ -672,6 +703,7 @@ function Field({
         aria-invalid={invalid || undefined}
         aria-describedby={describedBy || undefined}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
       />
       {hint ? (
         <p id={`${id}-hint`} className={styles.hint}>
@@ -685,4 +717,48 @@ function Field({
       ) : null}
     </div>
   );
+}
+
+/**
+ * Fire-and-forget diversion log, ported back from the sister project.
+ *
+ * Every order that ends on WhatsApp instead of Shopify is a sale the hub would
+ * otherwise have no record of — the buyer has already typed their name, email
+ * and phone by this point, and without this call all of it dies with the tab.
+ * `keepalive` matters: the very next statement navigates or opens a new window,
+ * and without it the browser cancels the request in flight.
+ *
+ * Failures are swallowed on purpose. This must never block the buyer or put an
+ * error in front of them.
+ */
+function logDiversion(params: {
+  planName: string;
+  email: string;
+  name: string;
+  phone: string;
+  proxyOn: boolean;
+  extraConnections: number;
+  total: number;
+  reason: "STORE_CLAIMED_MIDFLIGHT" | "NO_STORE_AVAILABLE";
+}) {
+  try {
+    fetch(`${CHECKOUT_HUB_URL}/api/diversion`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      keepalive: true,
+      body: JSON.stringify({
+        siteSlug: SITE_SLUG,
+        planName: params.planName,
+        email: params.email || undefined,
+        name: params.name || undefined,
+        phone: params.phone || undefined,
+        proxyProtection: params.proxyOn,
+        extraConnections: params.extraConnections,
+        amountCents: Math.round(params.total * 100),
+        reason: params.reason,
+      }),
+    }).catch(() => {});
+  } catch {
+    // no-op
+  }
 }
