@@ -1,0 +1,131 @@
+/* Shared mid-page call to action. Sized to sit under a figure or a grid
+   without competing with the section title above it. */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  margin-top: clamp(24px, 3vh, 38px);
+  text-align: center;
+}
+
+.wrap[data-align="start"] {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Comfortably past the 44px tap target without becoming a slab. */
+  min-height: 52px;
+  padding: 0 clamp(24px, 2.6vw, 34px);
+  border-radius: 999px;
+  background: var(--accent-flare);
+  color: var(--cta-ink);
+  font-size: clamp(13.5px, 1.05vw, 15px);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  isolation: isolate;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 10px 30px rgba(255, 61, 34, 0.24);
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out),
+    filter 0.45s var(--ease-out);
+}
+
+/* A soft bloom that only exists on hover — cheaper than animating a shadow
+   on the element itself, and it cannot affect layout. */
+.button::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--accent-flare);
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 16px 40px rgba(255, 61, 34, 0.32);
+}
+
+.button:hover::after {
+  opacity: 0.5;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: translate 0.45s var(--ease-out);
+}
+
+.button:hover .arrow {
+  translate: 3px 0;
+}
+
+.note {
+  margin: 0;
+  max-width: 42ch;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 520px) {
+  .button {
+    /* Full width on a phone, where a centred pill next to nothing reads as an
+       afterthought rather than the next step. */
+    width: 100%;
+    max-width: 380px;
+    padding-inline: 20px;
+    white-space: normal;
+  }
+
+  .wrap[data-align="start"] {
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button::after,
+  .arrow {
+    transition: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+
+  .button:hover .arrow {
+    translate: 0;
+  }
+}
+
+/* The bloom is a blurred copy of the gradient. It only ever shows on hover, so
+   on a touch device it is pure cost for something nobody can trigger. */
+@media (hover: none) {
+  .button::after {
+    display: none;
+  }
+}

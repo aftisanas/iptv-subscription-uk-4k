@@ -87,7 +87,7 @@ export const PRICING = {
   multiConnection: {
     lead: "Need more than five screens?",
     highlight: "Extra connections",
-    tail: "can be added to any term at checkout, and the price for your term is shown before you pay. Premium already includes a sixth screen, so extra connections there are counted on top of it.",
+    tail: "can be added to any term at checkout, and the price for your term is shown before you pay.",
   },
   includedLabel: "Included on every plan",
 } as const;
@@ -174,6 +174,25 @@ export const TIERS: Record<TierId, Tier> = {
 
 export const TIER_ORDER: TierId[] = ["standard", "premium"];
 
+/**
+ * Tiers currently on sale.
+ *
+ * ⚠️ Premium is temporarily withdrawn. TO RESTORE IT, change this one line to
+ *    ["standard", "premium"] — nothing else needs touching. Everything that
+ *    renders or prices a tier reads this array:
+ *      - the pricing grid and the Standard/Premium switch
+ *      - the Product JSON-LD offers on /
+ *      - findPlanById(), so /checkout cannot reach a withdrawn tier
+ *      - the Standard-vs-Premium FAQ entry
+ *
+ * The Premium data below is deliberately left intact rather than deleted, so
+ * restoring is a flag flip and not an archaeology exercise.
+ */
+export const VISIBLE_TIERS: TierId[] = ["standard"];
+
+/** True while both tiers are on sale — the switch only earns its space then. */
+export const HAS_TIER_CHOICE = VISIBLE_TIERS.length > 1;
+
 /** A plan together with the tier it belongs to — the tier carries the rules. */
 export type PlanWithTier = { plan: Plan; tier: Tier };
 
@@ -183,7 +202,9 @@ export type PlanWithTier = { plan: Plan; tier: Tier };
  */
 export function findPlanById(id: string | null | undefined): PlanWithTier | null {
   if (!id) return null;
-  for (const tierId of TIER_ORDER) {
+  // VISIBLE_TIERS, not TIER_ORDER: a stale /checkout?plan=p12 link must not
+  // reach a tier that is not on sale. It redirects to /#pricing instead.
+  for (const tierId of VISIBLE_TIERS) {
     const tier = TIERS[tierId];
     const plan = tier.plans.find((p) => p.id === id);
     if (plan) return { plan, tier };

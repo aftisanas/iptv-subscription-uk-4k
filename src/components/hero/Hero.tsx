@@ -32,8 +32,9 @@ export default function Hero() {
       <Atmosphere />
 
       <div className={styles.frame}>
+        {/* rail.left now renders beside the logo in the header. What stays here
+            is the terms line, which belongs with the claim, not the brand. */}
         <div className={styles.meta}>
-          <span className={styles.metaLabel}>{C.rail.left}</span>
           <span className={`${styles.metaLabel} ${styles.metaAccent}`}>
             {C.rail.right}
           </span>

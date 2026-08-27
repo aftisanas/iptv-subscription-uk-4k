@@ -73,12 +73,15 @@ export const FAQ: FaqItem[] = [
     answer:
       "Not on a private home connection. On a shared, student or public network an encrypted route is worth having, which is why the Secure Proxy is offered as a paid add-on rather than bundled in and described as free. Add it if it applies to you; skip it if it does not.",
   },
-  {
+/* Withdrawn with the Premium tier — an FAQ answering a question about a
+     product that is not on sale describes absent content, and this array also
+     feeds the FAQPage JSON-LD. Restore alongside VISIBLE_TIERS.
+    {
     id: "tiers",
     question: "What is the difference between Standard and Premium?",
     answer:
       "The television is identical — same channels, same films, same 4K, same guarantee. Premium adds the Secure Proxy and a sixth simultaneous screen, and bundles them for less than the two cost added to Standard separately: £3.99 less on the 3-month term, rising to £60.99 less on the 24-month. If you need neither, Standard is the whole service and nothing is missing from it.",
-  },
+  }, */
   {
     id: "catchup",
     question: "What are the EPG and catch-up?",

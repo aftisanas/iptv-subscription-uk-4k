@@ -11,6 +11,7 @@ export const DEVICES_CONTENT = {
   title: { lead: "One Subscription, Every Screen In The", accent: "House" },
   lede:
     "Your login works across five screens at once, in any combination. There is no separate app to buy and no box to rent — if the device runs a player app, it runs your subscription.",
+  cta: { label: "Get it on your screens", note: "Five screens on one login. Works on the device you already own." },
   note: "New to this? The Fire TV Stick walkthrough covers the whole process end to end, including which player app to use and what to do if a channel will not load.",
 } as const;
 

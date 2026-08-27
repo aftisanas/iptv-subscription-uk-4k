@@ -15,7 +15,7 @@ import Faq from "@/components/faq/Faq";
 import ClosingCta from "@/components/closing/ClosingCta";
 
 import { FAQ } from "@/data/faq";
-import { TIERS, TIER_ORDER } from "@/data/pricing";
+import { TIERS, VISIBLE_TIERS } from "@/data/pricing";
 import { CONTACT_EMAIL, SITE_NAME, SITE_URL, WHATSAPP_DISPLAY } from "@/lib/constants";
 
 const title = "IPTV Subscriptions UK — No Auto-Billing, 30-Day Refund";
@@ -75,14 +75,14 @@ export default function HomePage() {
   const logoUrl = `${SITE_URL}/logo-512.png`;
 
   /**
-   * Eight offers: both tiers run all four terms. Built from the same arrays the
-   * pricing section renders, so a price can never drift between the card and
-   * the markup.
+   * One Offer per purchasable plan, built from the same arrays the pricing
+   * section renders — so a price can never drift between the card and the
+   * markup, and a withdrawn tier can never be advertised in a rich result.
    *
    * No `aggregateRating` and no `review` — we have collected none, and the
    * DMCC Act 2024 makes inventing them permanently off the table.
    */
-  const offers = TIER_ORDER.flatMap((tierId) =>
+  const offers = VISIBLE_TIERS.flatMap((tierId) =>
     TIERS[tierId].plans.map((plan) => ({
       "@type": "Offer",
       name: `${plan.term} — ${TIERS[tierId].label}`,

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { DEVICES, DEVICES_CONTENT as C } from "@/data/devices";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import SectionCta from "@/components/ui/SectionCta";
 import styles from "./Devices.module.css";
 
 /**
@@ -64,6 +65,8 @@ export default function Devices() {
           <span className={styles.noteDot} aria-hidden="true" />
           {C.note}
         </p>
+
+        <SectionCta label={C.cta.label} note={C.cta.note} />
       </div>
     </section>
   );

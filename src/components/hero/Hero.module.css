@@ -35,7 +35,8 @@
 .meta {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  /* One child now — keep it on the right, where it has always sat. */
+  justify-content: flex-end;
   gap: 24px;
   animation: fadeUp 1s var(--ease-out) 0.14s both;
 }

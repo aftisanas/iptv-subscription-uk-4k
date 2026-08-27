@@ -9,6 +9,7 @@ export const KEY_FEATURES_CONTENT = {
   /** Split so the last word can take the accent flare, as the hero does. */
   title: { lead: "Everything On Every", accent: "Plan" },
   imageAlt: "An IPTV subscription channel guide open on a UK smart TV",
+  cta: { label: "See plans & pricing", note: "From £3.33 a month on the 24-month term. 30-day money-back guarantee." },
 } as const;
 
 export const KEY_FEATURES: KeyFeature[] = [

@@ -363,7 +363,7 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
             </h1>
 
             {/* 1. Extra connections — ± counter, not a toggle */}
-            <div className={styles.addon}>
+            <div className={styles.addon} data-active={extraConnections > 0 ? "" : undefined}>
               <div className={styles.stepper} role="group" aria-label="Extra connections">
                 <button
                   type="button"
@@ -377,9 +377,12 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
                 <span className={styles.stepValue} aria-live="polite">
                   {extraConnections}
                 </span>
+                {/* At zero this is the only thing to do in the row, so it is
+                    lit. Once counting it drops back to a peer of the minus. */}
                 <button
                   type="button"
-                  className={styles.stepBtn}
+                  className={`${styles.stepBtn} ${styles.stepAdd}`}
+                  data-invite={extraConnections === 0 ? "" : undefined}
                   onClick={() =>
                     setExtraConnections((n) => Math.min(EXTRA_CONNECTIONS_MAX, n + 1))
                   }
@@ -391,7 +394,15 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
               </div>
 
               <div className={styles.addonBody}>
-                <p className={styles.addonTitle}>{CHECKOUT_COPY.extraConnectionsLabel}</p>
+                <p className={styles.addonKicker}>Optional add-on</p>
+                <p className={styles.addonTitle}>
+                  {CHECKOUT_COPY.extraConnectionsLabel}
+                  {extraConnections > 0 ? (
+                    <span className={styles.countPill}>
+                      {totalScreens} screens
+                    </span>
+                  ) : null}
+                </p>
                 <p className={styles.addonHelp}>
                   {extraConnections >= EXTRA_CONNECTIONS_MAX
                     ? `Maximum ${EXTRA_CONNECTIONS_MAX} extra. That is ${totalScreens} screens at once.`
@@ -417,7 +428,11 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
             </div>
 
             {/* 2. Secure Proxy — locked and free on Premium */}
-            <div className={styles.addon} data-locked={tier.proxyIncluded ? "" : undefined}>
+            <div
+              className={styles.addon}
+              data-locked={tier.proxyIncluded ? "" : undefined}
+              data-active={proxyOn ? "" : undefined}
+            >
               <div className={styles.stepper}>
                 <button
                   type="button"
@@ -440,6 +455,9 @@ function CheckoutForPlan({ entry }: { entry: PlanWithTier }) {
               </div>
 
               <div className={styles.addonBody}>
+                <p className={styles.addonKicker}>
+                  {tier.proxyIncluded ? "In your plan" : "Optional add-on"}
+                </p>
                 <p className={styles.addonTitle}>
                   {CHECKOUT_COPY.proxyLabel}
                   <span className={styles.badge}>Recommended</span>

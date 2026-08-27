@@ -40,9 +40,14 @@ export default function Navbar() {
 
   return (
     <header className={styles.nav}>
-      <a className={styles.brand} href={C.brand.href} aria-label={`${C.brand.name} — home`}>
-        <BrandMark className={styles.mark} />
-      </a>
+      {/* The category label sits beside the mark, not under it. Under the mark
+          it read as part of the logo; alongside it, it reads as what it is. */}
+      <div className={styles.brandGroup}>
+        <a className={styles.brand} href={C.brand.href} aria-label={`${C.brand.name} — home`}>
+          <BrandMark className={styles.mark} />
+        </a>
+        <span className={styles.brandLabel}>{C.rail.left}</span>
+      </div>
 
       <nav className={styles.pill} aria-label="Primary">
         {C.nav.links.map(({ label, href }) => (

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { KEY_FEATURES, KEY_FEATURES_CONTENT as C } from "@/data/features";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import artwork from "@/assets/key-features.webp";
+import SectionCta from "@/components/ui/SectionCta";
 import styles from "./KeyFeatures.module.css";
 
 function Tick({ className }: { className?: string }) {
@@ -68,6 +69,10 @@ export default function KeyFeatures() {
               placeholder="blur"
             />
           </figure>
+
+          {/* Under the artwork and inside the left column, so it lines up with
+              the title rather than floating between the two columns. */}
+          <SectionCta label={C.cta.label} note={C.cta.note} align="start" />
         </div>
 
         <ul className={styles.list}>

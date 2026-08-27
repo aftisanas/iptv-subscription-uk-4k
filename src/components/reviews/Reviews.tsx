@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { REVIEWS, REVIEWS_CONTENT as C } from "@/data/reviews";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import SectionCta from "@/components/ui/SectionCta";
 import styles from "./Reviews.module.css";
 
 /**
@@ -71,8 +72,8 @@ export default function Reviews() {
                   className={styles.shot}
                   src={review.image}
                   alt={`${review.label}: ${review.caption}`}
-                  width={720}
-                  height={1390}
+                  width={review.w}
+                  height={review.h}
                   loading="lazy"
                   decoding="async"
                 />
@@ -80,6 +81,8 @@ export default function Reviews() {
             </li>
           ))}
         </ul>
+
+        <SectionCta label={C.cta.label} note={C.cta.note} />
 
         <p className={styles.note}>{C.note}</p>
       </div>

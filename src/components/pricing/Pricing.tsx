@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Countdown from "./Countdown";
 import TierToggle from "./TierToggle";
 import PlanCard from "./PlanCard";
-import { PRICING, TIERS, TIER_ORDER, type TierId } from "@/data/pricing";
+import { HAS_TIER_CHOICE, PRICING, TIERS, VISIBLE_TIERS, type TierId } from "@/data/pricing";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./Pricing.module.css";
 
@@ -20,7 +20,7 @@ import styles from "./Pricing.module.css";
 export default function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
   const revealed = useScrollReveal(sectionRef, { threshold: 0.1 });
-  const [tier, setTier] = useState<TierId>("standard");
+  const [tier, setTier] = useState<TierId>(VISIBLE_TIERS[0]);
 
   return (
     <section
@@ -45,14 +45,18 @@ export default function Pricing() {
 
         <p className={styles.eyebrow}>{PRICING.eyebrow}</p>
 
-        <div className={styles.toggle}>
-          <TierToggle value={tier} onChange={setTier} />
-        </div>
+        {/* The switch only exists when there is something to switch between.
+            With one tier on sale it would be a control that does nothing. */}
+        {HAS_TIER_CHOICE ? (
+          <div className={styles.toggle}>
+            <TierToggle value={tier} onChange={setTier} />
+          </div>
+        ) : null}
 
         {/* Both taglines share one cell, so the line under the switch cannot
             jump as the copy length changes between tiers. */}
         <div className={styles.taglines}>
-          {TIER_ORDER.map((id) => (
+          {VISIBLE_TIERS.map((id) => (
             <p key={id} className={styles.tagline} data-shown={tier === id ? "" : undefined}>
               {TIERS[id].tagline}
             </p>
@@ -71,7 +75,7 @@ export default function Pricing() {
       </div>
 
       <div className={styles.plansViewport}>
-        {TIER_ORDER.map((id) => (
+        {VISIBLE_TIERS.map((id) => (
           <div
             key={id}
             className={styles.plans}

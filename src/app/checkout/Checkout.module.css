@@ -265,9 +265,44 @@
   background: rgba(255, 255, 255, 0.022);
 }
 
+/* Chosen: the row lifts out of the card so the order summary and the control
+   agree at a glance about what is being bought. */
+.addon[data-active] {
+  border-color: rgba(255, 122, 34, 0.4);
+  background: rgba(255, 122, 34, 0.06);
+  box-shadow: inset 2px 0 0 var(--accent-red);
+}
+
 .addon[data-locked] {
   border-color: rgba(255, 160, 43, 0.22);
   background: rgba(255, 160, 43, 0.05);
+  box-shadow: inset 2px 0 0 var(--accent-amber);
+}
+
+/* Hover only where there is something to click. */
+.addon:not([data-locked]):hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.addonKicker {
+  margin: 0 0 4px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.countPill {
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 122, 34, 0.35);
+  background: rgba(255, 122, 34, 0.12);
+  color: var(--accent-amber);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .addonBody {
@@ -336,18 +371,59 @@
 .stepBtn {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  /* 38px, not 30 — this is the primary interaction in the row and it has to
+     survive a thumb on a phone. */
+  width: 38px;
+  height: 38px;
   border: 1px solid var(--hairline);
-  border-radius: 8px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
   color: var(--ink);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1;
   transition:
     border-color 0.3s var(--ease-out),
     background 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out),
     opacity 0.3s var(--ease-out);
+}
+
+.stepBtn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+/* While the count is zero the plus is the only move in the row, so it carries
+   the accent and a slow halo. Once counting, it settles back to a peer of the
+   minus — an add-one control, not a call to action. */
+.stepAdd[data-invite] {
+  position: relative;
+  border-color: transparent;
+  background: var(--accent-flare);
+  color: var(--cta-ink);
+  font-weight: 700;
+}
+
+/* The halo is a separate ring animated on transform + opacity only, so it runs
+   on the compositor. Animating box-shadow spread instead would repaint this
+   button every frame for as long as the page is open. */
+.stepAdd[data-invite]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(255, 61, 34, 0.55);
+  animation: stepPulse 2.6s var(--ease-out) infinite;
+  pointer-events: none;
+}
+
+.stepAdd[data-invite]:hover {
+  filter: brightness(1.08);
+}
+
+@keyframes stepPulse {
+  0%   { transform: scale(1);    opacity: 0.7; }
+  70%  { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
 }
 
 .stepBtn:hover:not(:disabled) {
@@ -361,7 +437,7 @@
 }
 
 .stepValue {
-  min-width: 28px;
+  min-width: 30px;
   text-align: center;
   font-size: 14px;
   font-weight: 700;
@@ -372,8 +448,8 @@
 /* ── Toggle ─────────────────────────────────────────────────────────── */
 .toggle {
   position: relative;
-  width: 46px;
-  height: 26px;
+  width: 52px;
+  height: 30px;
   padding: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
@@ -394,8 +470,8 @@
   position: absolute;
   top: 50%;
   left: 3px;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: #fff;
   translate: 0 -50%;
@@ -403,7 +479,11 @@
 }
 
 .toggle[data-on] .toggleKnob {
-  left: 23px;
+  left: 26px;
+}
+
+.toggle:not(:disabled):hover {
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* ── Fields ─────────────────────────────────────────────────────────── */
@@ -678,6 +758,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .stepAdd[data-invite]::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .stepBtn:active:not(:disabled) {
+    transform: none;
+  }
+
   .primary,
   .promoApply,
   .stepBtn,
@@ -690,5 +779,24 @@
   .primary:hover:not(:disabled),
   .promoApply:hover {
     transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Mobile performance.
+
+   backdrop-filter is the most expensive thing on this page during a
+   scroll, and three cards stack it. Below the tablet breakpoint the
+   radius is halved and saturation dropped — the frosting still reads,
+   at roughly a quarter of the blur cost.
+   ------------------------------------------------------------------ */
+@media (max-width: 760px) {
+  .card,
+  .main {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* A touch more opaque so the lighter blur still separates the card
+       from the stage behind it. */
+    background: rgba(255, 255, 255, 0.055);
   }
 }
